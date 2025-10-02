@@ -15,6 +15,22 @@
   }
 }
 
+/* Manual override via [data-theme] */
+[data-theme="light"]{
+  --bg: #ffffff;
+  --fg: #111111;
+  --muted: #666666;
+  --link: #0b57d0;
+  --border: #e5e7eb;
+}
+[data-theme="dark"]{
+  --bg: #0b0c0f;
+  --fg: #e6e6e6;
+  --muted: #a3a3a3;
+  --link: #86b7ff;
+  --border: #1f2937;
+}
+
 /* Base typography: monospace system stack */
 html{font-size:16px}
 body{
@@ -36,6 +52,9 @@ body{
 .site-nav ul{list-style:none; margin:0; padding:0; display:flex; gap:.75rem; flex-wrap:wrap}
 .site-nav a{color:var(--link); text-decoration:none}
 .site-nav a:focus, .site-nav a:hover{ text-decoration: underline; }
+/* Theme toggle */
+.theme-toggle{ margin-left:auto; background:none; border:1px solid var(--border); color:var(--fg); border-radius:.5rem; padding:.25rem .5rem; cursor:pointer }
+.theme-toggle:hover,.theme-toggle:focus-visible{ border-color: var(--muted) }
 
 /* Main */
 .page-title{margin-top:0; font-size:1.75rem}
