@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<article class="page" itemscope itemtype="https://schema.org/Article">
+  <header>
+    <h1 class="page-title" itemprop="headline">{{ page.title }}</h1>
+    {% if page.date %}<p class="page-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d.%m.%Y' }}</time></p>{% endif %}
+  </header>
+  <section class="page-content" itemprop="articleBody">
+    {{ content }}
+  </section>
+</article>
