@@ -68,6 +68,9 @@ body{
 /* Footer */
 .site-footer{border-top:1px solid var(--border); margin-top:2rem}
 .site-footer p{margin:0; color:var(--muted)}
+/* Footer theme toggle position */
+.site-footer{ position: relative; }
+.site-footer .theme-toggle{ position: fixed; right: 1rem; bottom: 1rem; }
 
 /* Accessible focus ring */
 :focus-visible{outline: 2px solid #ffbf47; outline-offset: 2px}
