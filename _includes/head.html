@@ -5,3 +5,13 @@
 <meta name="description" content="{{ page.excerpt | default: site.description | strip_newlines | escape }}">
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+<script>
+	(function(){
+		try {
+			var stored = localStorage.getItem('theme');
+			var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			var theme = stored || (prefersDark ? 'dark' : 'light');
+			document.documentElement.setAttribute('data-theme', theme);
+		} catch(e) {}
+	})();
+</script>
