@@ -82,6 +82,13 @@ pre{background: color-mix(in srgb, var(--border) 60%, transparent); padding: .75
 /* Images */
 img{max-width:100%; height:auto}
 
+/* Banner */
+.site-banner{ position:sticky; top:0; z-index:999; background: #ffefc1; color:#3b2f00; border-bottom: 1px solid #e5cf84; padding:.5rem 1rem; text-align:center; font-weight:700 }
+@media (prefers-color-scheme: dark){
+  .site-banner{ background: #3b2f00; color:#ffefc1; border-bottom-color:#705b11 }
+}
+[data-theme="dark"] .site-banner{ background: #3b2f00; color:#ffefc1; border-bottom-color:#705b11 }
+
 /* CV */
 .cv{display:block}
 .cv-header{display:flex; align-items:center; justify-content:space-between; gap:1rem; border-bottom:1px solid var(--border); padding-bottom:1rem; margin-bottom:1rem}
