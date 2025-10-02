@@ -15,7 +15,12 @@ layout: default
       </p>
     </div>
     {% if cv.basics.picture and cv.basics.picture.url and cv.basics.picture.effects.hidden == false %}
-      <img class="cv-avatar" src="{{ cv.basics.picture.url }}" alt="{{ cv.basics.name }}" loading="lazy">
+      {% assign pic = cv.basics.picture.url %}
+      {% if pic contains '://' %}
+        <img class="cv-avatar" src="{{ pic }}" alt="{{ cv.basics.name }}" loading="lazy">
+      {% else %}
+        <img class="cv-avatar" src="{{ pic | relative_url }}" alt="{{ cv.basics.name }}" loading="lazy">
+      {% endif %}
     {% endif %}
   </header>
 
