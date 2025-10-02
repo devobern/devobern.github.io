@@ -3,8 +3,6 @@ description: "Security Analyst • Student • Maker"
 url: "https://nicolin-dora.ch"
 baseurl: ""
 locale: "de-CH"
-remote_theme: "mmistakes/minimal-mistakes"
-minimal_mistakes_skin: "default"
 
 # Autorprofil
 author:
@@ -39,12 +37,18 @@ collections:
     # Optional: collection-wide permalink if a page has none set
     # permalink: /:title/
 
-# Standard-Layout für Seiten
+# Standard-Layouts
 defaults:
-  - scope: {path: "_pages"}
+  # All standalone pages under _pages use the simple page layout
+  - scope:
+      path: "_pages"
     values:
-      layout: single
-      author_profile: true
+      layout: page
+  # Posts use the page layout, which shows title and date
+  - scope:
+      type: posts
+    values:
+      layout: page
 
 social:
   type: "Person"

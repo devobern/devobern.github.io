@@ -1,0 +1,15 @@
+<header class="site-header" role="banner">
+  <div class="container">
+    <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    {% assign nav = site.data.navigation.main %}
+    {% if nav %}
+    <nav class="site-nav" role="navigation" aria-label="Hauptnavigation">
+      <ul>
+        {% for item in nav %}
+        <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
+  </div>
+</header>

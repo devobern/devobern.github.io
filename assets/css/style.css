@@ -1,0 +1,61 @@
+:root{
+  --bg: #ffffff;
+  --fg: #111111;
+  --muted: #666666;
+  --link: #0b57d0;
+  --border: #e5e7eb;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0b0c0f;
+    --fg: #e6e6e6;
+    --muted: #a3a3a3;
+    --link: #86b7ff;
+    --border: #1f2937;
+  }
+}
+
+/* Base typography: monospace system stack */
+html{font-size:16px}
+body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Ubuntu Mono", "Courier New", monospace;
+  line-height:1.6;
+  text-rendering: optimizeLegibility;
+}
+
+/* Layout */
+.container{max-width: 46rem; margin: 0 auto; padding: 1rem}
+
+/* Header */
+.site-header{border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--bg); z-index:10}
+.site-header .site-title{font-weight:700; text-decoration:none; color:var(--fg); margin-right:1rem}
+.site-nav ul{list-style:none; margin:0; padding:0; display:flex; gap:.75rem; flex-wrap:wrap}
+.site-nav a{color:var(--link); text-decoration:none}
+.site-nav a:focus, .site-nav a:hover{ text-decoration: underline; }
+
+/* Main */
+.page-title{margin-top:0; font-size:1.75rem}
+.page-date{color:var(--muted)}
+.post-list{list-style:none; margin:0; padding:0}
+.post-list li{padding:.75rem 0; border-bottom:1px solid var(--border)}
+.post-list .post-link{font-weight:600}
+.post-list .post-date{color:var(--muted); margin-left:.5rem; font-size:.9rem}
+.post-excerpt{margin:.25rem 0 0 0; color:var(--muted)}
+
+/* Footer */
+.site-footer{border-top:1px solid var(--border); margin-top:2rem}
+.site-footer p{margin:0; color:var(--muted)}
+
+/* Accessible focus ring */
+:focus-visible{outline: 2px solid #ffbf47; outline-offset: 2px}
+
+/* Code blocks and preformatted */
+code, pre{font-family: inherit}
+pre{background: color-mix(in srgb, var(--border) 60%, transparent); padding: .75rem; overflow:auto}
+
+/* Images */
+img{max-width:100%; height:auto}
