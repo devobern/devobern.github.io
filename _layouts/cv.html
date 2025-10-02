@@ -19,6 +19,11 @@ layout: default
     {% endif %}
   </header>
 
+  {# Render optional page content (e.g., PDF-Download-Link) #}
+  <div class="cv-page-content">
+    {{ content }}
+  </div>
+
   {% if cv.sections.summary.visible %}
   <section class="cv-block">
     <h2>{{ cv.sections.summary.name }}</h2>
