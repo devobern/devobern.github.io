@@ -28,11 +28,16 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-redirect-from
 
 collections:
   posts:
     output: true
     permalink: /blog/:title/
+  pages:
+    output: true
+    # Optional: collection-wide permalink if a page has none set
+    # permalink: /:title/
 
 # Standard-Layout für Seiten
 defaults:
