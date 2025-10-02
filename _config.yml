@@ -1,0 +1,49 @@
+title: "Nicolin Dora"
+description: "Security Analyst • Student • Maker"
+url: "https://nicolin-dora.ch"
+baseurl: ""
+locale: "de-CH"
+remote_theme: "mmistakes/minimal-mistakes"
+minimal_mistakes_skin: "default"
+
+# Autorprofil
+author:
+  name: "Nicolin Dora"
+  avatar: "/assets/images/avatar.jpg"
+  bio: "Kurzprofil folgt."
+  location: "Bern/Biel, Schweiz"
+  links:
+    - label: "E-Mail"
+      icon: "fas fa-envelope"
+      url: "mailto:mail@nicolin-dora.ch"
+    - label: "GitHub"
+      icon: "fab fa-github"
+      url: "https://github.com/devobern"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "https://www.linkedin.com/in/<dein-handle>/"
+
+plugins:
+  - jekyll-include-cache
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+collections:
+  posts:
+    output: true
+    permalink: /blog/:title/
+
+# Standard-Layout für Seiten
+defaults:
+  - scope: {path: "_pages"}
+    values:
+      layout: single
+      author_profile: true
+
+social:
+  type: "Person"
+  name: "Nicolin Dora"
+
+markdown: kramdown
+permalink: pretty
