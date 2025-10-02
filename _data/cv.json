@@ -1,0 +1,530 @@
+{
+  "basics": {
+    "name": "Nicolin Dora",
+    "headline": "Cyber Security Analyst",
+    "email": "nicolin.dora@protonmail.com",
+    "phone": "",
+    "location": "",
+    "url": {
+      "label": "",
+      "href": ""
+    },
+    "customFields": [
+      {
+        "id": "jtqs1vwjkld5vgd7v1c4fp64",
+        "icon": "linkedin-logo",
+        "name": "",
+        "value": "linkedin.com/in/nicolindora"
+      }
+    ],
+    "picture": {
+      "url": "https://storage.rxresu.me/cmfxt7u2rbvfcrxdfe29mya57/pictures/w16uhhe7e66uro3xbkr6y0ss.jpg",
+      "size": 64,
+      "aspectRatio": 1,
+      "borderRadius": 0,
+      "effects": {
+        "hidden": false,
+        "border": false,
+        "grayscale": false
+      }
+    }
+  },
+  "sections": {
+    "summary": {
+      "name": "Profil",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "summary",
+      "content": "<p>Cyber Security Analyst mit rund sieben Jahren Erfahrung (Teilzeitanteile) und einem Bachelor in Informatik mit Vertiefung IT Security. Fundierte Kenntnisse in Kryptografie, Informationssicherheit und angewandter IT-Sicherheit.</p>"
+    },
+    "awards": {
+      "name": "Auszeichnungen",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "awards",
+      "items": [
+        {
+          "id": "kiyyw3qmv3ablooby9af254g",
+          "visible": true,
+          "title": "Silver Badge - Santa Claus CTF",
+          "awarder": "OSINT Switzerland",
+          "date": "12.2025",
+          "summary": "<p>Awarded to participants who finished 2nd in the Santa Claus CTF.</p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        }
+      ]
+    },
+    "certifications": {
+      "name": "Zertifikate",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "certifications",
+      "items": [
+        {
+          "id": "fux1k0jsjcxrb8tn6it41ocu",
+          "visible": true,
+          "name": "Certified SAFe® 6 Practitioner",
+          "issuer": "SAFe by Scaled Agile, Inc.",
+          "date": "03.2025",
+          "summary": "<p></p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        }
+      ]
+    },
+    "education": {
+      "name": "Ausbildung",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "education",
+      "items": [
+        {
+          "id": "uueguw8essrkrzlyn7bh8upm",
+          "visible": true,
+          "institution": "Berner Fachhochschule (BFH)",
+          "studyType": "Bachelor of Science BFH",
+          "area": "Informatik, Vertiefung IT Security",
+          "score": "",
+          "date": "09.2021 - 07.2025",
+          "summary": "<p>Vertiefte Auseinandersetzung mit sicherheitsrelevanten Themen wie Kryptografie, Identitäts- und Zugriffsmanagement, Intrusion Detection Systems, Malware-Analyse, Forensik, Web- und Softwaresicherheit sowie Schwachstellen- und Exploit-Analyse. </p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "pcyhy76nnqy7kszhb1xaiste",
+          "visible": true,
+          "institution": "AKAD",
+          "studyType": "Berufsmatura",
+          "area": "Technik, Architektur & Life Sciences",
+          "score": "",
+          "date": "02.2019 - 07.2021",
+          "summary": "<p>Erwerb der fachlichen und schulischen Voraussetzungen für das Studium im Bereich Informatik. </p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "hpzve9wpscd7egximja9g8sq",
+          "visible": true,
+          "institution": "Schweizer Armee",
+          "studyType": "Soldat",
+          "area": "Allgemeine Grundausbildung",
+          "score": "",
+          "date": "01.2018 - 04.2018",
+          "summary": "<p>Ausbildung in Erster Hilfe, Teamdisziplin, Belastbarkeit und Durchhaltevermögen. </p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "v01kt5f5ktih2nfzx9yelzno",
+          "visible": true,
+          "institution": "Gewerbliche Industrielle Berufsschule Bern (GIBB)",
+          "studyType": "Eidgenössisches Fähigkeitszeugnis (EFZ)",
+          "area": "Informatiker Fachrichtung Systemtechnik",
+          "score": "",
+          "date": "08.2013 - 07.2017",
+          "summary": "<p>Solide Ausbildung in den Grundlagen der Systemtechnik und praktischen Informatik. </p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        }
+      ]
+    },
+    "experience": {
+      "name": "Berufserfahrung",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "experience",
+      "items": [
+        {
+          "id": "cz8i6ohghqgd5ruxcj6vibxi",
+          "visible": true,
+          "company": "Centris AG",
+          "position": "Cyber Security Analyst",
+          "location": "Solothurn, CH",
+          "date": "09.2021 - 12.2025",
+          "summary": "<p>Verantwortlich für Schwachstellenmanagement, Threat Intelligence, Incident-Triage und Awareness. Mitarbeit am Ausbau des SOC in Zusammenarbeit mit dem Cyber Defense Center. Täglicher Einsatz von EDR-, NDR- und SIEM-Lösungen.</p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "db7vhail3l9jpxexxak7fdjg",
+          "visible": true,
+          "company": "Swisscom (Schweiz) AG",
+          "position": "Junior Security Analyst",
+          "location": "Zürich, CH",
+          "date": "01.2019 - 08.2021",
+          "summary": "<p>Analyse und Triage von Incidents sowie Kundenkontakt bei Onboardings und Sicherheitsvorfällen. Mitarbeit an der Weiterentwicklung von Security-Services und Ausbau technischer Kompetenzen.</p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "jud3twv46hb1nyp59b4ax73z",
+          "visible": true,
+          "company": "Schweizer Armee",
+          "position": "Soldat Durchdiener, Funktion Cyber Security Analyst",
+          "location": "Bern, CH",
+          "date": "01.2018 - 11.2018",
+          "summary": "<p>Einsatz im milCERT in Kryptografie, Reverse Engineering und Netzwerküberwachung. Breiter Einblick in zentrale Bereiche der Cyber Security und deren praktische Anwendung.</p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "gb307h6m04fp7tyde2yy8h7b",
+          "visible": true,
+          "company": "Eidgenössisches Departement für auswärtige Angelegenheiten (EDA)",
+          "position": "ICT System Controller",
+          "location": "Bern, CH",
+          "date": "11.2017 - 12.2017",
+          "summary": "<p>Betreuung von Mobile Devices, Einrichtung von Arbeitsplatzsystemen sowie Second-Level-Support. </p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "q9kimhi3idipbmwyk9n9k56y",
+          "visible": true,
+          "company": "EDA, Schweizer Botschaft in Paris & Schweizer Delegation bei der UNESCO",
+          "position": "Systemadministrator",
+          "location": "Paris, FR",
+          "date": "08.2017 - 11.2017",
+          "summary": "<p>Verantwortlich für Arbeitsplatz- und Mobilgeräte der Botschafts- sowie Delegationsmitarbeitenden. </p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "jhx4u3mvzafaku0n27vbju0e",
+          "visible": true,
+          "company": "Eidgenössisches Departement für auswärtige Angelegenheiten (EDA)",
+          "position": "Informatiker EFZ, Fachrichtung Systemtechnik",
+          "location": "Bern, CH",
+          "date": "08.2013 - 07.2017",
+          "summary": "<p>Breite Einblicke in die IT-Infrastruktur des EDA, von Service Desk und Endbenutzersupport bis zu Exchange- und DNS-Teams. </p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        }
+      ]
+    },
+    "volunteer": {
+      "name": "Freiwilligenarbeit",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "volunteer",
+      "items": []
+    },
+    "interests": {
+      "name": "Interessen",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "interests",
+      "items": [
+        {
+          "id": "tushymyulnq7xuhqbdfcm3tx",
+          "visible": true,
+          "name": "Heimnetzwerke",
+          "keywords": [
+            "NAS",
+            "Docker",
+            "Self-Hosting",
+            "Linux"
+          ]
+        },
+        {
+          "id": "iyrhrflixozgosjjplbxl7rc",
+          "visible": true,
+          "name": "Sport",
+          "keywords": [
+            "Klettern",
+            "Bouldern",
+            "Joggen"
+          ]
+        }
+      ]
+    },
+    "languages": {
+      "name": "Sprachen",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "languages",
+      "items": [
+        {
+          "id": "bmyikw216tl2cs88n4q5dm9v",
+          "visible": true,
+          "name": "Deutsch",
+          "description": "Muttersprache",
+          "level": 5
+        },
+        {
+          "id": "gjbhfki3afhgo0wwzamxv7al",
+          "visible": true,
+          "name": "Englisch",
+          "description": "Sehr gute Kenntnisse in Wort und Schrift",
+          "level": 4
+        },
+        {
+          "id": "rn1n7k8xzjm84immpds2kty7",
+          "visible": true,
+          "name": "Französisch",
+          "description": "Grundkenntnisse",
+          "level": 1
+        }
+      ]
+    },
+    "profiles": {
+      "name": "Profile",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "profiles",
+      "items": []
+    },
+    "projects": {
+      "name": "Projekte",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "projects",
+      "items": [
+        {
+          "id": "qckqmd3e1ukh0j37b8xwprwb",
+          "visible": true,
+          "name": "Digital und sicher: Neue Wege für die Schulkommunikation",
+          "description": "Bachelor-Thesis",
+          "date": "02.2025 - 06.2025",
+          "summary": "<p>Die Digitalisierung eröffnet Schulen neue Möglichkeiten für Kommunikation und Verwaltung. Gleichzeitig steigen die Anforderungen an den Schutz personenbezogener Daten von Kindern und Jugendlichen. Diese Arbeit zeigt, wie eine schulische Kommunikationslösung konsequent nach dem Prinzip „Privacy by Design“ entwickelt werden kann. Durch geeignete kryptografische Verfahren wird sichergestellt, dass selbst der Plattformbetreiber keinen Zugriff auf sensible Inhalte hat.</p>",
+          "keywords": [],
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "cybua9150c1wz1aknluv8hi9",
+          "visible": true,
+          "name": "URL-Archiver",
+          "description": "Projektarbeit im Studium",
+          "date": "09.2023 - 01.2024",
+          "summary": "<p>Der URL-Archiver ermöglicht das Extrahieren von URLs aus beliebigem Unicode-Text oder aus PDF-Dateien und erlaubt das interaktive Archivieren bei einem der unterstützten Archivierungsdienste.</p>",
+          "keywords": [],
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        }
+      ]
+    },
+    "publications": {
+      "name": "Publikationen",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "publications",
+      "items": []
+    },
+    "references": {
+      "name": "Referenzen",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "references",
+      "items": []
+    },
+    "skills": {
+      "name": "Fähigkeiten",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "skills",
+      "items": [
+        {
+          "id": "ffswprbma77oz507iczguz1r",
+          "visible": true,
+          "name": "Defensive Security",
+          "description": "",
+          "level": 5,
+          "keywords": [
+            "Analyse von Sicherheitsvorfällen",
+            "EDR",
+            "NDR",
+            "SIEM",
+            "Malware-Analyse"
+          ]
+        },
+        {
+          "id": "pyc4im211to7qs2monph3sen",
+          "visible": true,
+          "name": "Offensive Security",
+          "description": "",
+          "level": 2,
+          "keywords": [
+            "Web Application Penetration Testing"
+          ]
+        },
+        {
+          "id": "cgq4cxm4abwly4cyl44igsxr",
+          "visible": true,
+          "name": "Forensik",
+          "description": "",
+          "level": 3,
+          "keywords": [
+            "Malware-Analyse",
+            "Timelining",
+            "Netzwerkforensik"
+          ]
+        },
+        {
+          "id": "xull61dp4w2981cyyqdpgzmw",
+          "visible": true,
+          "name": "Security Awareness",
+          "description": "",
+          "level": 4,
+          "keywords": [
+            "E-Learning",
+            "Phishing",
+            "Schulungen"
+          ]
+        },
+        {
+          "id": "kzmsxbjful1jps2syttoqxye",
+          "visible": true,
+          "name": "Java",
+          "description": "",
+          "level": 4,
+          "keywords": []
+        },
+        {
+          "id": "or4pjvmd4db60plc1kwfv4kx",
+          "visible": true,
+          "name": "Python",
+          "description": "",
+          "level": 3,
+          "keywords": []
+        },
+        {
+          "id": "l35q2lle4hbn7qfcpgnksl9p",
+          "visible": true,
+          "name": "Rust",
+          "description": "",
+          "level": 2,
+          "keywords": []
+        },
+        {
+          "id": "qomclkl2473ze0b02nrht2d4",
+          "visible": true,
+          "name": "C",
+          "description": "",
+          "level": 2,
+          "keywords": []
+        },
+        {
+          "id": "m5t008oobe12re6h14w5b2gw",
+          "visible": true,
+          "name": "C++",
+          "description": "",
+          "level": 2,
+          "keywords": []
+        },
+        {
+          "id": "kfefq041xhe65qzotz560akj",
+          "visible": true,
+          "name": "HTML, CSS, JavaScript",
+          "description": "",
+          "level": 2,
+          "keywords": []
+        }
+      ]
+    },
+    "custom": {}
+  },
+  "metadata": {
+    "template": "pikachu",
+    "layout": [
+      [
+        [
+          "summary",
+          "experience",
+          "profiles",
+          "volunteer",
+          "references"
+        ],
+        [
+          "skills",
+          "publications"
+        ]
+      ],
+      [
+        [
+          "education",
+          "projects"
+        ],
+        [
+          "awards",
+          "certifications",
+          "interests",
+          "languages"
+        ]
+      ]
+    ],
+    "css": {
+      "value": "* {\n\toutline: 1px solid #000;\n\toutline-offset: 4px;\n}",
+      "visible": false
+    },
+    "page": {
+      "margin": 18,
+      "format": "a4",
+      "options": {
+        "breakLine": true,
+        "pageNumbers": true
+      }
+    },
+    "theme": {
+      "background": "#ffffff",
+      "text": "#000000",
+      "primary": "#2596be"
+    },
+    "typography": {
+      "font": {
+        "family": "PT Sans",
+        "subset": "latin",
+        "variants": [
+          "regular"
+        ],
+        "size": 14
+      },
+      "lineHeight": 1.5,
+      "hideIcons": false,
+      "underlineLinks": false
+    },
+    "notes": ""
+  }
+}

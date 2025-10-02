@@ -1,0 +1,174 @@
+---
+layout: default
+---
+{% assign cv = site.data.cv %}
+<section class="cv">
+  <header class="cv-header">
+    <div>
+      <h1 class="cv-name">{{ cv.basics.name }}</h1>
+      <p class="cv-headline">{{ cv.basics.headline }}</p>
+      <p class="cv-contact">
+        <a href="mailto:{{ cv.basics.email }}">{{ cv.basics.email }}</a>
+        {% if cv.basics.customFields and cv.basics.customFields.size > 0 %}
+          · <a href="https://{{ cv.basics.customFields[0].value }}" rel="me noopener" target="_blank">{{ cv.basics.customFields[0].value }}</a>
+        {% endif %}
+      </p>
+    </div>
+    {% if cv.basics.picture and cv.basics.picture.url and cv.basics.picture.effects.hidden == false %}
+      <img class="cv-avatar" src="{{ cv.basics.picture.url }}" alt="{{ cv.basics.name }}" loading="lazy">
+    {% endif %}
+  </header>
+
+  {% if cv.sections.summary.visible %}
+  <section class="cv-block">
+    <h2>{{ cv.sections.summary.name }}</h2>
+    <div class="cv-content">{{ cv.sections.summary.content }}</div>
+  </section>
+  {% endif %}
+
+  {% if cv.sections.experience.visible %}
+  <section class="cv-block">
+    <h2>{{ cv.sections.experience.name }}</h2>
+    <ul class="cv-list">
+      {% for item in cv.sections.experience.items %}
+      <li>
+        <div class="cv-row">
+          <div class="cv-row-main">
+            <strong>{{ item.position }}</strong> · {{ item.company }}
+            <div class="cv-meta">{{ item.location }} · {{ item.date }}</div>
+            <div class="cv-summary">{{ item.summary }}</div>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if cv.sections.education.visible %}
+  <section class="cv-block">
+    <h2>{{ cv.sections.education.name }}</h2>
+    <ul class="cv-list">
+      {% for item in cv.sections.education.items %}
+      <li>
+        <div class="cv-row">
+          <div class="cv-row-main">
+            <strong>{{ item.studyType }}</strong> · {{ item.institution }}
+            <div class="cv-meta">{{ item.area }} · {{ item.date }}</div>
+            <div class="cv-summary">{{ item.summary }}</div>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if cv.sections.skills.visible %}
+  <section class="cv-block">
+    <h2>{{ cv.sections.skills.name }}</h2>
+    <ul class="cv-skill-groups">
+      {% for s in cv.sections.skills.items %}
+      <li>
+        <strong>{{ s.name }}</strong>
+        {% if s.keywords and s.keywords.size > 0 %}
+          <div class="cv-tags">
+            {% for k in s.keywords %}
+              <span class="tag">{{ k }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if cv.sections.projects.visible %}
+  <section class="cv-block">
+    <h2>{{ cv.sections.projects.name }}</h2>
+    <ul class="cv-list">
+      {% for p in cv.sections.projects.items %}
+      <li>
+        <div class="cv-row">
+          <div class="cv-row-main">
+            <strong>{{ p.name }}</strong> · {{ p.description }}
+            <div class="cv-meta">{{ p.date }}</div>
+            <div class="cv-summary">{{ p.summary }}</div>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
+  {% if cv.sections.awards.visible or cv.sections.certifications.visible %}
+  <section class="cv-columns">
+    {% if cv.sections.awards.visible %}
+    <div class="cv-block">
+      <h2>{{ cv.sections.awards.name }}</h2>
+      <ul class="cv-list">
+        {% for a in cv.sections.awards.items %}
+        <li>
+          <strong>{{ a.title }}</strong> · {{ a.awarder }}
+          <div class="cv-meta">{{ a.date }}</div>
+          <div class="cv-summary">{{ a.summary }}</div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% if cv.sections.certifications.visible %}
+    <div class="cv-block">
+      <h2>{{ cv.sections.certifications.name }}</h2>
+      <ul class="cv-list">
+        {% for c in cv.sections.certifications.items %}
+        <li>
+          <strong>{{ c.name }}</strong> · {{ c.issuer }}
+          <div class="cv-meta">{{ c.date }}</div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {% if cv.sections.interests.visible or cv.sections.languages.visible %}
+  <section class="cv-columns">
+    {% if cv.sections.interests.visible %}
+    <div class="cv-block">
+      <h2>{{ cv.sections.interests.name }}</h2>
+      <ul class="cv-tags-list">
+        {% for i in cv.sections.interests.items %}
+          <li>
+            <strong>{{ i.name }}</strong>
+            {% if i.keywords %}
+            <div class="cv-tags">
+              {% for kw in i.keywords %}<span class="tag">{{ kw }}</span>{% endfor %}
+            </div>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    {% if cv.sections.languages.visible %}
+    <div class="cv-block">
+      <h2>{{ cv.sections.languages.name }}</h2>
+      <ul class="cv-list">
+        {% for l in cv.sections.languages.items %}
+        <li>
+          <strong>{{ l.name }}</strong>
+          <div class="cv-meta">{{ l.description }}</div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </section>
+  {% endif %}
+</section>
