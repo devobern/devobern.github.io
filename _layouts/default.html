@@ -1,5 +1,10 @@
 {% include head.html %}
 <body class="theme">
+  {% if site.show_banner %}
+  <div class="site-banner" role="status">
+    🚧 Diese Seite ist noch im Aufbau. Inhalte werden laufend ergänzt.
+  </div>
+  {% endif %}
   {% include header.html %}
   <main id="content" class="container" role="main">
     {{ content }}
