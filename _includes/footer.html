@@ -1,6 +1,15 @@
 <footer class="site-footer" role="contentinfo">
   <div class="container">
     <p>© {{ site.time | date: '%Y' }} {{ site.author.name | default: site.title }}</p>
+    <nav class="footer-links" aria-label="Soziale Links">
+      <ul>
+        {% for l in site.author.links %}
+          {% if l.label == 'GitHub' or l.label == 'LinkedIn' %}
+            <li><a href="{{ l.url }}" target="_blank" rel="me noopener">{{ l.label }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
   </div>
   <button class="theme-toggle" id="theme-toggle" aria-label="Theme umschalten" title="Theme umschalten" type="button">🌓</button>
 </footer>
