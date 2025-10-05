@@ -20,7 +20,7 @@ author:
       url: "https://github.com/devobern"
     - label: "LinkedIn"
       icon: "fab fa-linkedin"
-      url: "https://www.linkedin.com/in/<dein-handle>/"
+      url: "https://linkedin.com/in/nicolindora"
 
 plugins:
   - jekyll-include-cache
