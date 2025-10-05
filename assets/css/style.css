@@ -45,10 +45,13 @@ body{
 
 /* Layout */
 .container{max-width: 46rem; margin: 0 auto; padding: 1rem}
+img, video{max-width:100%; height:auto}
 
 /* Header */
 .site-header{border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--bg); z-index:10}
+.site-header .container{ display:flex; align-items:center; gap:.75rem; flex-wrap:wrap }
 .site-header .site-title{font-weight:700; text-decoration:none; color:var(--fg); margin-right:1rem}
+.site-nav{ margin-left:auto }
 .site-nav ul{list-style:none; margin:0; padding:0; display:flex; gap:.75rem; flex-wrap:wrap}
 .site-nav a{color:var(--link); text-decoration:none}
 .site-nav a:focus, .site-nav a:hover{ text-decoration: underline; }
@@ -77,6 +80,16 @@ body{
 .footer-links ul{list-style:none; margin:0; padding:0; display:flex; gap:.75rem; flex-wrap:wrap}
 .footer-links a{ color: var(--link); text-decoration: none }
 .footer-links a:hover, .footer-links a:focus{ text-decoration: underline }
+
+/* Responsive tweaks */
+@media (max-width: 640px){
+  .container{ padding: .75rem }
+  .page-title{ font-size: 1.5rem }
+  .site-nav{ width:100%; margin-left:0 }
+  .site-nav ul{ gap:.5rem }
+  .site-footer .container{ flex-direction: column; align-items: flex-start; gap:.5rem }
+  .site-footer .theme-toggle{ position: static; margin-top:.25rem }
+}
 
 /* Accessible focus ring */
 :focus-visible{outline: 2px solid #ffbf47; outline-offset: 2px}
