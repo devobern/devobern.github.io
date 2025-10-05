@@ -32,3 +32,4 @@ Thumbs.db
 .ruby-version
 .ruby-gemset
 .yardoc
+Gemfile.lock
