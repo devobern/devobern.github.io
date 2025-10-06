@@ -46,6 +46,9 @@ body{
 /* Layout */
 .container{max-width: 46rem; margin: 0 auto; padding: 1rem}
 img, video{max-width:100%; height:auto}
+/* Center standalone images in content */
+.page-content p > img:only-child,
+.page-content p > a:only-child > img{ display:block; margin:1rem auto; }
 
 /* Header */
 .site-header{border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--bg); z-index:10}
@@ -97,6 +100,48 @@ img, video{max-width:100%; height:auto}
 /* Code blocks and preformatted */
 code, pre{font-family: inherit}
 pre{background: color-mix(in srgb, var(--border) 60%, transparent); padding: .75rem; overflow:auto}
+
+/* ==========================
+   CV layout and components
+   ========================== */
+.cv{ margin-top: 1rem }
+.cv-header{ display:grid; grid-template-columns: 1fr 120px; gap: 1rem; align-items: center; }
+.cv-name{ font-size: 2rem; margin: 0 }
+.cv-headline{ margin:.25rem 0; color: var(--muted) }
+.cv-contact{ margin:.25rem 0 }
+.cv-avatar{ width:120px; height:auto; border-radius: 50%; border:1px solid var(--border) }
+
+/* Section blocks */
+.cv-block{ background: color-mix(in srgb, var(--border) 20%, transparent); border:1px solid var(--border); border-radius:.75rem; padding:1rem; margin-top:1rem }
+.cv-block > h2{ margin-top:0; font-size:1.25rem; padding-left:.5rem; border-left:4px solid var(--link) }
+
+/* Two-column sections */
+.cv-columns{ display:grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top:1rem }
+.cv-columns .cv-block{ margin-top:0 }
+
+/* Lists inside CV */
+.cv-list{ list-style:none; padding:0; margin:0 }
+.cv-list li{ padding:.75rem 0; border-bottom:1px solid var(--border) }
+.cv-list li:last-child{ border-bottom:none }
+.cv-row-main strong{ font-weight:700 }
+.cv-meta{ color: var(--muted); font-size:.95rem; margin:.25rem 0 }
+.cv-summary{ margin-top:.25rem }
+
+/* Skills and tags */
+.cv-skill-groups{ list-style:none; padding:0; margin:0; display:grid; grid-template-columns: 1fr 1fr; gap:.5rem 1rem }
+.cv-skill-groups > li{ padding:.5rem 0; border-bottom:1px dashed var(--border) }
+.cv-skill-groups > li:last-child{ border-bottom:none }
+.cv-tags{ display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.25rem }
+.tag{ display:inline-block; padding:.15rem .5rem; border:1px solid var(--border); border-radius:999px; background: color-mix(in srgb, var(--border) 25%, transparent); font-size:.85rem }
+.cv-tags-list{ list-style:none; padding:0; margin:0; display:grid; gap:.5rem }
+
+/* Responsive CV tweaks */
+@media (max-width: 800px){
+  .cv-header{ grid-template-columns: 1fr; text-align:left }
+  .cv-avatar{ width:96px }
+  .cv-columns{ grid-template-columns: 1fr }
+  .cv-skill-groups{ grid-template-columns: 1fr }
+}
 
 /* Images */
 img{max-width:100%; height:auto}
