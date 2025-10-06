@@ -3,7 +3,7 @@ description: "Security Analyst • Student • Maker"
 url: "https://nicolin-dora.ch"
 baseurl: ""
 locale: "de-CH"
-show_banner: true
+show_banner: false
 
 # Autorprofil
 author:
