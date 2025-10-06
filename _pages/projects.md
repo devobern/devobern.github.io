@@ -1,6 +1,7 @@
 ---
 permalink: /projects/
 title: Projekte
+archiver_repo_url: "" # Optional: set your URL-Archiver GitHub repo here
 ---
 
 {% comment %}
@@ -20,6 +21,18 @@ assets/files/bachelor_thesis_nicolin_dora.pdf ablegen (oder den Namen anpassen).
 		<a href="https://github.com/devobern/BFH-Bachelorarbeit-Proof-of-Concept" target="_blank" rel="noopener">Proof of Concept (GitHub)</a>
 		·
 		<a href="{{ '/assets/files/Digital_und_sicher_Neue_Wege_für_die_Schulkommunikation.pdf' | relative_url }}" download>PDF herunterladen</a>
+	</p>
+</section>
+{% endif %}
+
+{% assign archiver = site.data.cv.sections.projects.items | where: "name", "URL-Archiver" | first %}
+{% if archiver %}
+<section class="project">
+	<h2>{{ archiver.name }}</h2>
+	<p style="color: var(--muted); margin-top: -.5rem;">{{ archiver.description }} · {{ archiver.date }}</p>
+	<div class="project-summary">{{ archiver.summary }}</div>
+	<p>
+		<a href="{{ page.archiver_repo_url | default: 'https://github.com/devobern/URL-Archiver' }}" target="_blank" rel="noopener">GitHub‑Repository</a>
 	</p>
 </section>
 {% endif %}
