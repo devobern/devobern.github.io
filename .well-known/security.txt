@@ -1,0 +1,9 @@
+# security.txt for nicolin-dora.ch
+# See: RFC 9116 — https://www.rfc-editor.org/rfc/rfc9116
+
+Contact: mailto:security@nicolin-dora.ch
+Contact: https://nicolin-dora.ch/about/
+Encryption: https://nicolin-dora.ch/assets/files/pgp_nicolin_dora.asc
+Canonical: https://nicolin-dora.ch/.well-known/security.txt
+Preferred-Languages: de, en
+Expires: 2026-12-31T23:59:59Z
