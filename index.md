@@ -1,8 +1,8 @@
 ---
-layout: single
+layout: page
 title: Start
 permalink: /
-redirect_to: /about/
+redirect: /about/
 ---
 
 Falls die Weiterleitung nicht automatisch klappt, gehe zu [/about/](/about/).
