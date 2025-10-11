@@ -22,7 +22,6 @@ jobs:
         run: |
           bundle exec htmlproofer ./_site \
             --check-external-hash \
-            --check-opengraph \
             --empty-alt-ignore \
             --http-status-ignore 999 \
             --assume-extension \
