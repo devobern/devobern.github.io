@@ -8,7 +8,7 @@
 {% if jekyll.environment == "development" %}
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; script-src 'self' http://127.0.0.1:35729 http://localhost:35729; connect-src 'self' ws://127.0.0.1:35729 ws://localhost:35729 http://127.0.0.1:35729 http://localhost:35729; form-action 'self'; frame-ancestors 'none'">
 {% else %}
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; style-src 'self'; img-src 'self' data:; font-src 'self'; script-src 'self' https://gc.zgo.at; connect-src 'self' https://nicolin-dora.goatcounter.com; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; style-src 'self'; img-src 'self' data:; font-src 'self'; script-src 'self' https://gc.zgo.at 'sha256-ZswfTY7H35rbv8WC7NXBoiC7WNu86vSzCDChNWwZZDM='; connect-src 'self' https://nicolin-dora.goatcounter.com https://gc.zgo.at; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
 {% endif %}
 <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
