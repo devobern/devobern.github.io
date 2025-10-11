@@ -5,5 +5,6 @@ Contact: mailto:security@nicolin-dora.ch
 Contact: https://nicolin-dora.ch/about/
 Encryption: https://nicolin-dora.ch/assets/files/pgp_nicolin_dora.asc
 Canonical: https://nicolin-dora.ch/.well-known/security.txt
+Policy: https://nicolin-dora.ch/SECURITY.html
 Preferred-Languages: de, en
 Expires: 2026-12-31T23:59:59Z
