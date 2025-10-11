@@ -21,10 +21,7 @@ jobs:
       - name: HTMLProofer checks
         run: |
           bundle exec htmlproofer ./_site \
-            --check-external-hash \
-            --empty-alt-ignore \
-            --http-status-ignore 999 \
             --assume-extension \
-            --disable-external true \
-            --enforce-https true \
-            --check-internal-hash true
+            --enforce-https \
+            --check-internal-hash \
+            --disable-external
