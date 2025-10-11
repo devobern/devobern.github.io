@@ -14,10 +14,9 @@ assets/files/bachelor_thesis_nicolin_dora.pdf ablegen (oder den Namen anpassen).
 {% if thesis %}
 <section class="project">
 	<h2>{{ thesis.name }}</h2>
-	<p style="color: var(--muted); margin-top: -.5rem;">{{ thesis.description }} · {{ thesis.date }}</p>
+	<p class="project-meta">{{ thesis.description }} · {{ thesis.date }}</p>
 	<div class="project-summary">{{ thesis.summary }}</div>
 	<p>
-		<!-- TODO: Ersetze REPO_NAME mit dem tatsächlichen Repository-Namen -->
 		<a href="https://github.com/devobern/BFH-Bachelorarbeit-Proof-of-Concept" target="_blank" rel="noopener">Proof of Concept (GitHub)</a>
 		·
 		<a href="{{ '/assets/files/Digital_und_sicher_Neue_Wege_für_die_Schulkommunikation.pdf' | relative_url }}" download>PDF herunterladen</a>
@@ -29,7 +28,7 @@ assets/files/bachelor_thesis_nicolin_dora.pdf ablegen (oder den Namen anpassen).
 {% if archiver %}
 <section class="project">
 	<h2>{{ archiver.name }}</h2>
-	<p style="color: var(--muted); margin-top: -.5rem;">{{ archiver.description }} · {{ archiver.date }}</p>
+	<p class="project-meta">{{ archiver.description }} · {{ archiver.date }}</p>
 	<div class="project-summary">{{ archiver.summary }}</div>
 	<p>
 		<a href="{{ page.archiver_repo_url | default: 'https://github.com/devobern/URL-Archiver' }}" target="_blank" rel="noopener">GitHub‑Repository</a>
