@@ -108,6 +108,9 @@ img, video{max-width:100%; height:auto}
 code, pre{font-family: inherit}
 pre{background: color-mix(in srgb, var(--border) 60%, transparent); padding: .75rem; overflow:auto}
 
+/* Projects page */
+.project .project-meta{ color: var(--muted); margin-top: -.5rem }
+
 /* ==========================
    CV layout and components
    ========================== */
