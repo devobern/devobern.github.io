@@ -9,4 +9,7 @@ layout: default
   <section class="page-content" itemprop="articleBody">
     {{ content }}
   </section>
+  {% if page.layout == 'page' and page.collection == 'posts' %}
+  {% include comments.html %}
+  {% endif %}
 </article>
