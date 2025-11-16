@@ -48,20 +48,20 @@ Folgende Hardware habe ich verbaut – alles Komponenten, die ich bereits zu Hau
 ## E‑Paper‑Raumluft‑Monitor
 Das Ziel des E‑Paper‑Raumluft‑Monitors ist, dass er so lange unauffällig bleibt, wie sich die Luftqualität im grünen Bereich befindet – aber sichtbar wird, sobald definierte Schwellenwerte überschritten werden. Dies wird durch das LED‑Board erreicht, das bei kritischen Werten zu blinken beginnt. Ausserdem zeigt das E‑Paper‑Display jederzeit die aktuelle Luftqualität sowie eine kurze Empfehlung, was zu tun ist.
 
-![M5Paper E‑Paper‑Gerät](../assets/images/blog/2025-11-16/E-Paper-Raumluft-Monitor-MVP.jpg)
+![M5Paper E‑Paper‑Gerät]({{ '/assets/images/blog/2025-11-16/E-Paper-Raumluft-Monitor-MVP.jpg' | relative_url }})
 
 ## Dashboard
 Das Dashboard soll uns helfen, den Verlauf der Luftqualität zu verstehen und uns motivieren, sie zu verbessern. Dazu zeige ich interaktive Grafiken und einige einfach zu interpretierende Kennzahlen. Das Dashboard soll ein Motivator sein, die Luftqualität langfristig im Blick zu behalten. Im Folgenden ein kleiner Einblick in das Dashboard.
 
-![Dashboard All-in one Graph](../assets/images/blog/2025-11-16/dashboard_1.png)
-![Dashboard tägliche Lüftungsanzahl und Minuten über Warnschwelle (Feuchte & CO2)](../assets/images/blog/2025-11-16/dashboard_2.png)
-![Dashboard Minuten über kritischer Schwelle (Feuchte & CO2) und Minuten unter Warnschwelle (Feuchte & CO2)](../assets/images/blog/2025-11-16/dashboard_3.png)
+![Dashboard All-in one Graph]({{ '/assets/images/blog/2025-11-16/dashboard_1.png' | relative_url }})
+![Dashboard tägliche Lüftungsanzahl und Minuten über Warnschwelle (Feuchte & CO2)]({{ '/assets/images/blog/2025-11-16/dashboard_2.png' | relative_url }})
+![Dashboard Minuten über kritischer Schwelle (Feuchte & CO2) und Minuten unter Warnschwelle (Feuchte & CO2)]({{ '/assets/images/blog/2025-11-16/dashboard_3.png' | relative_url }})
 
 
 ## Telegram Bot
 Das aktive Anschauen der Statistiken auf dem Dashboard ist eine bewusste Entscheidung, die man im Alltag leicht vergisst. Darum habe ich einen Telegram‑Bot erstellt, der jeden Morgen um 7 Uhr einen Bericht über den letzten Tag in unseren WG‑Chat schickt. Das soll zusätzlich helfen, das Bewusstsein zu stärken und die Luftqualität im Alltag zu verbessern.
 
-![Nachricht des Telegram Bots](../assets/images/blog/2025-11-16/telegram_bot_message.png)
+![Nachricht des Telegram Bots]({{ '/assets/images/blog/2025-11-16/telegram_bot_message.png' | relative_url }})
 
 ## Was kommt in Teil 2
 Im zweiten Teil dieser Blog‑Serie möchte ich mehr auf den Code und die Implementation eingehen und zeigen, welche Herausforderungen es zu lösen gab. Ausserdem wird dann auch das GitHub‑Repository öffentlich sein, sodass interessierte Leser:innen den Code im Detail studieren, Verbesserungen vorschlagen oder sich ihren eigenen E‑Paper‑Raumluft‑Monitor bauen können.
