@@ -115,6 +115,7 @@ pre{background: color-mix(in srgb, var(--border) 60%, transparent); padding: .75
 .comments{ margin-top:2rem; padding-top:1.5rem; border-top:1px solid var(--border) }
 .comments h2{ margin-top:0; font-size:1.25rem }
 .comments-intro,.comments-fallback{ color:var(--muted); font-size:.95rem }
+.comments iframe{ width:100% !important; max-width:100%; border:0 }
 
 /* ==========================
    CV layout and components
