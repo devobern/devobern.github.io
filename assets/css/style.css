@@ -108,6 +108,15 @@ img, video{max-width:100%; height:auto}
 code, pre{font-family: inherit}
 pre{background: color-mix(in srgb, var(--border) 60%, transparent); padding: .75rem; overflow:auto}
 
+/* TL;DR block */
+.tldr{
+  border-left:4px solid var(--link);
+  background: color-mix(in srgb, var(--border) 35%, transparent);
+  padding:.75rem 1rem;
+  margin:1.25rem 0;
+}
+.tldr strong{ display:inline-block; margin-right:.25rem }
+
 /* Tables */
 .page-content table{width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem}
 .page-content th,.page-content td{border:1px solid var(--border); padding:.35rem .5rem; vertical-align:top}

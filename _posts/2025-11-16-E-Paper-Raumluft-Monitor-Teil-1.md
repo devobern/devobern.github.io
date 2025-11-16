@@ -4,7 +4,10 @@ title: "Ein unauffällig auffälliger E-Paper-Raumluft-Monitor (Teil 1: Warum?)
 excerpt: "Warum ich für meine WG einen E-Paper-Raumluft-Monitor gebaut habe und wie das erste MVP funktioniert: Monitor Einheit mit E-Paper Display, Sensor und LED Panel -> Speicher und Weiterleitung an FastAPI Backend mit SQLite -> Darstellung auf interaktiven Dashboard."
 ---
 
-> TL;DR – In der kalten Jahreszeit bleiben die Fenster oft geschlossen. Die Luft wird «dick»: Die Luftfeuchtigkeit steigt häufig über 60 %, was dem Wohlbefinden schaden und zu Schimmel führen kann. Gleichzeitig erhöht sich der CO₂-Gehalt in der Luft, was sich negativ auf die Konzentration auswirkt. Darum habe ich einen Raumluft-Monitor entwickelt, der so lange unauffällig bleibt, wie alles im grünen Bereich ist. Wird ein definierter Schwellenwert überschritten, wird er bewusst auffällig. Für meinen Bedarf an Statistiken visualisiere ich die Messwerte zusätzlich in einem übersichtlichen Dashboard.
+<div class="tldr">
+  <strong>TL;DR</strong> – In der kalten Jahreszeit bleiben die Fenster oft geschlossen. Die Luft wird «dick»: Die Luftfeuchtigkeit steigt häufig über 60 %, was dem Wohlbefinden schaden und zu Schimmel führen kann. Gleichzeitig erhöht sich der CO₂-Gehalt in der Luft, was sich negativ auf die Konzentration auswirkt. Darum habe ich einen Raumluft-Monitor entwickelt, der so lange unauffällig bleibt, wie alles im grünen Bereich ist. Wird ein definierter Schwellenwert überschritten, wird er bewusst auffällig. Für meinen Bedarf an Statistiken visualisiere ich die Messwerte zusätzlich in einem übersichtlichen Dashboard.
+  
+</div>
 
 ## Das Warum
 In der Zeit, in der die Fenster häufig geschlossen bleiben, wird die Luft schnell «dick». Die Luftfeuchtigkeit sowie der CO₂-Gehalt steigen. CO₂ wird in «parts per million» (ppm) gemessen. Bei erhöhten Werten können folgende Probleme auftreten:
