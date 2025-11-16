@@ -18,9 +18,10 @@ In der Zeit, in der die Fenster häufig geschlossen bleiben, wird die Luft schne
 | Extreme Werte (z. B. > 5 000 ppm)    | Massive Symptome möglich – z. B. Atemnot oder Bewusstlosigkeit. In normalen Innenräumen sehr selten.                              |
 
 **Quelle:** ASHRAE (2022). *ASHRAE Position Document on Indoor Carbon Dioxide*.  
-https://www.svlw.ch/images/aktuell/2022/pd_indoorcarbondioxide_2022.pdf
+<a href="https://www.svlw.ch/images/aktuell/2022/pd_indoorcarbondioxide_2022.pdf" target="_blank" rel="noopener noreferrer">https://www.svlw.ch/images/aktuell/2022/pd_indoorcarbondioxide_2022.pdf</a>
 
 Analog ist auch eine zu hohe oder zu tiefe Luftfeuchtigkeit nicht gesund. Ist sie zu tief, führt dies zu trockenen Schleimhäuten, gereizter Haut und erhöhter Infektionsanfälligkeit. Ist sie zu hoch, fördert das Schimmelbildung, Staubmilben und andere Bioorganismen, welche Atemwegserkrankungen, Allergien und Asthma begünstigen.
+
 | Relative Luftfeuchtigkeit (RH) | Bedeutung / mögliche Folgen                                                                                                                                      |
 | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | < 30 %                         | Sehr trocken: Schleimhäute gereizt, trockene Haut, Augen, allenfalls Nasenbluten, erhöhte Anfälligkeit für Atemwegsinfekte.                         |
@@ -30,19 +31,19 @@ Analog ist auch eine zu hohe oder zu tiefe Luftfeuchtigkeit nicht gesund. Ist si
 | Sehr hoch (> 75 %)             | Hohe Feuchte + schlechte Belüftung = erhebliche Gesundheits- und Gebäuderisiken (Schimmel, Atemwegserkrankungen).               |
 
 **Quelle:** 
-Wang, W., Zhang, X., & Li, W. (2023). *Effects of indoor humidity on human health and comfort: A systematic review*. Building and Environment. 
-https://www.sciencedirect.com/science/article/pii/S2352710223002188
+Wang, W., Zhang, X., & Li, W. (2023). *Effects of indoor humidity on human health and comfort: A systematic review*. Building and Environment.  
+<a href="https://www.sciencedirect.com/science/article/pii/S2352710223002188" target="_blank" rel="noopener noreferrer">https://www.sciencedirect.com/science/article/pii/S2352710223002188</a>
 
 Das zeigt, dass regelmässiges Lüften sehr wichtig ist. Der E‑Paper‑Raumluft‑Monitor hilft mir und meinen Mitbewohnenden, diese Werte im Griff zu behalten und so ein möglichst gutes Raumklima zu erreichen.
 
 ## Hardware im Überblick
 Folgende Hardware habe ich verbaut – alles Komponenten, die ich bereits zu Hause hatte:
 
-- Gerät: [M5Paper (ESP32 + 4,7" E‑Ink)](https://shop.m5stack.com/products/m5paper-esp32-development-kit-v1-1-960x540-4-7-eink-display-235-ppi?srsltid=AfmBOorSjXp6nymG2FA8GZ-k-BkO0u5ethURiVewOK5y07dIVydX46p8) – Werbegeschenk
-- Sensor: [Sensirion SCD40 (CO₂ + Temperatur + Luftfeuchte)](https://shop.m5stack.com/products/co2-unit-with-temperature-and-humidity-sensor-scd40?srsltid=AfmBOorJuihThk46TBkpfEQu-Z4fheeFVYPYYES8r0D1RB8bDaSUIzbE) – vor ein paar Jahren gekauft, aber nie eingesetzt
-- Status‑Indikator: [HEX RGB LED Board (SK6812)](https://shop.m5stack.com/products/hex-rgb-led-board-sk6812?srsltid=AfmBOop_IkssjPazb1FBL3kP_HIDJwAshBsXQMBzYHk91z8PbRrrYoKY) – lag ebenfalls seit Längerem ungenutzt herum
-- Backend / Dashboard: [Raspberry Pi 4](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) – bereits im Heimnetzwerk im Einsatz
-- Stromversorgung (mittlerweile nur noch USV): [Chimpy PowerBank](https://heychimpy.com/de/) – wie das mit Powerbanks so ist: Man vergisst sie zurückzubringen und irgendwann gehören sie einem halt
+- Gerät: <a href="https://shop.m5stack.com/products/m5paper-esp32-development-kit-v1-1-960x540-4-7-eink-display-235-ppi?srsltid=AfmBOorSjXp6nymG2FA8GZ-k-BkO0u5ethURiVewOK5y07dIVydX46p8" target="_blank" rel="noopener noreferrer">M5Paper (ESP32 + 4,7" E‑Ink)</a> – Werbegeschenk
+- Sensor: <a href="https://shop.m5stack.com/products/co2-unit-with-temperature-and-humidity-sensor-scd40?srsltid=AfmBOorJuihThk46TBkpfEQu-Z4fheeFVYPYYES8r0D1RB8bDaSUIzbE" target="_blank" rel="noopener noreferrer">Sensirion SCD40 (CO₂ + Temperatur + Luftfeuchte)</a> – vor ein paar Jahren gekauft, aber nie eingesetzt
+- Status‑Indikator: <a href="https://shop.m5stack.com/products/hex-rgb-led-board-sk6812?srsltid=AfmBOop_IkssjPazb1FBL3kP_HIDJwAshBsXQMBzYHk91z8PbRrrYoKY" target="_blank" rel="noopener noreferrer">HEX RGB LED Board (SK6812)</a> – lag ebenfalls seit Längerem ungenutzt herum
+- Backend / Dashboard: <a href="https://www.raspberrypi.com/products/raspberry-pi-4-model-b/" target="_blank" rel="noopener noreferrer">Raspberry Pi 4</a> – bereits im Heimnetzwerk im Einsatz
+- Stromversorgung (mittlerweile nur noch USV): <a href="https://heychimpy.com/de/" target="_blank" rel="noopener noreferrer">Chimpy PowerBank</a> – wie das mit Powerbanks so ist: Man vergisst sie zurückzubringen und irgendwann gehören sie einem halt
 - «Gehäuse»: Karton – aus dem Altpapier gerettet
 
 ## E‑Paper‑Raumluft‑Monitor

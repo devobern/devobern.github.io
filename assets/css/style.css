@@ -108,6 +108,12 @@ img, video{max-width:100%; height:auto}
 code, pre{font-family: inherit}
 pre{background: color-mix(in srgb, var(--border) 60%, transparent); padding: .75rem; overflow:auto}
 
+/* Tables */
+.page-content table{width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem}
+.page-content th,.page-content td{border:1px solid var(--border); padding:.35rem .5rem; vertical-align:top}
+.page-content th{background: color-mix(in srgb, var(--border) 40%, transparent); text-align:left}
+.page-content table{display:block; overflow-x:auto}
+
 /* Projects page */
 .project .project-meta{ color: var(--muted); margin-top: -.5rem }
 
