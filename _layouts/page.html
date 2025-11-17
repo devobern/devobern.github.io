@@ -5,6 +5,29 @@ layout: default
   <header>
     <h1 class="page-title" itemprop="headline">{{ page.title }}</h1>
     {% if page.date %}<p class="page-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d.%m.%Y' }}</time></p>{% endif %}
+    {% if page.lang and page.ref %}
+    {% assign current_lang = page.lang %}
+    {% assign ref_id = page.ref %}
+    {% assign siblings = site.posts | where: "ref", ref_id %}
+    {% if siblings.size > 1 %}
+    <nav class="post-lang-switch" aria-label="Sprachauswahl">
+      <span class="post-lang-label">Sprache:</span>
+      {% for sibling in siblings %}
+        {% if sibling.url == page.url %}
+          <span class="post-lang-chip post-lang-chip--active">
+            {% case sibling.lang %}
+              {% when "de" %}DE{% when "en" %}EN{% else %}{{ sibling.lang | upcase }}{% endcase %}
+          </span>
+        {% else %}
+          <a class="post-lang-chip" href="{{ sibling.url | relative_url }}">
+            {% case sibling.lang %}
+              {% when "de" %}DE{% when "en" %}EN{% else %}{{ sibling.lang | upcase }}{% endcase %}
+          </a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+    {% endif %}
+    {% endif %}
   </header>
   <section class="page-content" itemprop="articleBody">
     {{ content }}
