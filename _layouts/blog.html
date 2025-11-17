@@ -4,12 +4,26 @@ layout: default
 <section class="blog-index">
   <h1>{{ page.title | default: 'Blog' }}</h1>
   {% if site.posts and site.posts.size > 0 %}
+  {% assign grouped = site.posts | group_by_exp: 'post', 'post.ref | default: post.id' %}
   <ul class="post-list">
-    {% for post in site.posts %}
+    {% for group in grouped %}
+      {% assign posts_in_group = group.items | sort: 'date' | reverse %}
+      {% assign primary = posts_in_group[0] %}
       <li>
-        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <span class="post-date">{{ post.date | date: '%d.%m.%Y' }}</span>
-        {% if post.excerpt %}<p class="post-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>{% endif %}
+        <a class="post-link" href="{{ primary.url | relative_url }}">{{ primary.title }}</a>
+        <span class="post-date">{{ primary.date | date: '%d.%m.%Y' }}</span>
+        {% if posts_in_group.size > 1 %}
+          <span class="post-lang-badges">
+            {% for p in posts_in_group %}
+              {% if p.lang %}
+                <span class="post-lang-badge">{{ p.lang | upcase }}</span>
+              {% endif %}
+            {% endfor %}
+          </span>
+        {% elsif primary.lang %}
+          <span class="post-lang-badges"><span class="post-lang-badge">{{ primary.lang | upcase }}</span></span>
+        {% endif %}
+        {% if primary.excerpt %}<p class="post-excerpt">{{ primary.excerpt | strip_html | truncate: 160 }}</p>{% endif %}
       </li>
     {% endfor %}
   </ul>
