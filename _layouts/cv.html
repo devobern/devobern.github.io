@@ -45,7 +45,9 @@ layout: default
           <div class="cv-row-main">
             <strong>{{ item.position }}</strong> · {{ item.company }}
             <div class="cv-meta">{{ item.location }} · {{ item.date }}</div>
+            {% if item.summary and item.summary != "" %}
             <div class="cv-summary">{{ item.summary }}</div>
+            {% endif %}
           </div>
         </div>
       </li>
@@ -64,7 +66,9 @@ layout: default
           <div class="cv-row-main">
             <strong>{{ item.studyType }}</strong> · {{ item.institution }}
             <div class="cv-meta">{{ item.area }} · {{ item.date }}</div>
+            {% if item.summary and item.summary != "" %}
             <div class="cv-summary">{{ item.summary }}</div>
+            {% endif %}
           </div>
         </div>
       </li>

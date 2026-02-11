@@ -1,7 +1,7 @@
 {
   "basics": {
     "name": "Nicolin Dora",
-    "headline": "Cyber Security Analyst",
+    "headline": "MSc Student (Information & Cyber Security) · Research Fellow (BFH)",
     "email": "mail@nicolin-dora.ch",
     "phone": "",
     "location": "",
@@ -36,7 +36,7 @@
       "separateLinks": true,
       "visible": true,
       "id": "summary",
-      "content": "<p>Cyber Security Analyst mit rund sieben Jahren Erfahrung (Teilzeitanteile) und einem Bachelor in Informatik mit Vertiefung IT Security. Fundierte Kenntnisse in Kryptografie, Informationssicherheit und angewandter IT-Sicherheit.</p>"
+      "content": "<p>MSc-Student im Profil Information and Cyber Security an der Berner Fachhochschule sowie Research Fellow an der BFH. Rund sieben Jahre praktische Erfahrung in Cyber Security (Teilzeitanteile) mit Schwerpunkten in Kryptografie, Informationssicherheit und angewandter IT-Sicherheit.</p>"
     },
     "awards": {
       "name": "Auszeichnungen",
@@ -87,6 +87,20 @@
       "visible": true,
       "id": "education",
       "items": [
+        {
+          "id": "w5gakvu0cdzrcmxt2k3nlp1q",
+          "visible": true,
+          "institution": "Berner Fachhochschule (BFH)",
+          "studyType": "MSc Engineering",
+          "area": "Profil Information and Cyber Security",
+          "score": "",
+          "date": "02.2026 - heute",
+          "summary": "",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
         {
           "id": "uueguw8essrkrzlyn7bh8upm",
           "visible": true,
@@ -152,6 +166,19 @@
       "visible": true,
       "id": "experience",
       "items": [
+        {
+          "id": "k7r4ydg5f1q2bv8ztm9wpc0n",
+          "visible": true,
+          "company": "Berner Fachhochschule (BFH)",
+          "position": "Research Fellow",
+          "location": "Biel, CH",
+          "date": "02.2026 - heute",
+          "summary": "",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
         {
           "id": "cz8i6ohghqgd5ruxcj6vibxi",
           "visible": true,
