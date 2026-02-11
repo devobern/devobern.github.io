@@ -18,5 +18,5 @@ Weitere Links findest du auch im Footer (GitHub, LinkedIn). Wenn du mir vertraul
 
 ## Lebenslauf & Projekte
 
-- Vollständiger **Lebenslauf**: <a href="/cv/">Web</a> · <a href="/assets/files/cv_nicolin_dora.pdf">PDF</a>
+- Vollständiger **Lebenslauf**: <a href="/cv/">Web</a>
 - Ausgewählte **Projekte** findest du auf der Projekte‑Seite.
