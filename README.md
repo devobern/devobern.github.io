@@ -61,6 +61,44 @@ nix-shell -p ruby bundler --run 'bundle install && bundle exec htmlproofer ./_si
 - Navigation: `_data/navigation.yml`
 - Styling: `assets/css/style.css`
 
+## Fotogalerie
+
+Die Galerie zeigt Fotos unter `/gallery/`. Bilder werden als WebP komprimiert und mit EXIF-Metadaten angezeigt.
+
+### Abhängigkeiten
+
+- Python 3.8+
+- Pillow
+
+Installation:
+```bash
+pip install Pillow
+# oder mit Nix:
+nix-shell -p python3 python3Packages.pillow
+```
+
+### Workflow: Neue Fotos hinzufügen
+
+```bash
+# 1. Bilder in photos/ ablegen
+cp ~/Bilder/*.jpg photos/
+
+# 2. Build-Script ausführen
+nix-shell -p python3 python3Packages.pillow --run 'python scripts/build-gallery.py'
+
+# 3. Generierte Dateien committen
+git add assets/gallery/
+git commit -m "feat(gallery): add new photos"
+git push
+```
+
+Das Script generiert:
+- Thumbnails (400px, WebP) → `assets/gallery/thumbs/`
+- Vollbilder (1200px, WebP) → `assets/gallery/full/`
+- Metadaten → `assets/gallery/gallery.json`
+
+**Hinweis:** Die Originale in `photos/` werden nicht committed (siehe `.gitignore`).
+
 ## CI
 
 Bei Pushes und Pull Requests auf `main` läuft ein Build inkl. HTMLProofer:

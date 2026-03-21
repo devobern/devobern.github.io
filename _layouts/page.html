@@ -8,7 +8,9 @@ layout: default
     {% if page.lang and page.ref %}
     {% assign current_lang = page.lang %}
     {% assign ref_id = page.ref %}
-    {% assign siblings = site.posts | where: "ref", ref_id %}
+    {% assign post_siblings = site.posts | where: "ref", ref_id %}
+    {% assign page_siblings = site.pages | where: "ref", ref_id %}
+    {% assign siblings = post_siblings | concat: page_siblings %}
     {% if siblings.size > 1 %}
     <nav class="post-lang-switch" aria-label="Sprachauswahl">
       <span class="post-lang-label">Sprache:</span>
