@@ -34,3 +34,8 @@ Thumbs.db
 .yardoc
 Gemfile.lock
 .github/copilot-instructions.md
+
+# Galerie: Original-Fotos (nur generierte WebP werden committed)
+# Falls du die Originale auch versionieren möchtest, kommentiere die nächste Zeile aus:
+photos/*
+!photos/.gitkeep

@@ -5,5 +5,7 @@ main:
     url: /blog/
   - title: "Projekte"
     url: /projects/
+  - title: "Fotografie"
+    url: /gallery/
   - title: "Lebenslauf"
     url: /cv/

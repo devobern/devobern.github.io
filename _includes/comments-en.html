@@ -1,0 +1,30 @@
+<section class="comments" aria-labelledby="comments-title">
+  <h2 id="comments-title">Comments</h2>
+
+  <p class="comments-intro">
+    Comments are powered by <a href="https://giscus.app" target="_blank" rel="noopener noreferrer">Giscus</a>. You need a GitHub account to comment.
+  </p>
+
+  <script src="https://giscus.app/client.js"
+  data-repo="devobern/devobern.github.io"
+  data-repo-id="R_kgDOP62GQA"
+  data-category="Announcements"
+  data-category-id="DIC_kwDOP62GQM4Cx2Xw"
+  data-mapping="specific"
+  data-term="{{ page.ref | default: page.url }}"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+	data-theme="light"
+  data-lang="en"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async>
+  </script>
+
+  <p class="comments-fallback">
+    Don't want to use GitHub? You can also send me feedback directly via
+    <a href="mailto:mail@nicolin-dora.ch?subject=Feedback%20on%20{{ page.title | uri_escape }}">email</a>.
+  </p>
+</section>
