@@ -1,5 +1,85 @@
 [
   {
+    "filename": "DSF6479",
+    "thumb": "/assets/gallery/thumbs/DSF6479.webp",
+    "full": "/assets/gallery/full/DSF6479.webp",
+    "date_sort": "2026-04-03T18:38:20",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 23mm F2 R WR",
+      "date": "2026-04-03T18:38:20",
+      "date_display": "03.04.2026",
+      "aperture": "f/2.0",
+      "shutter": "1/30s",
+      "iso": "ISO 80",
+      "focal_length": "23mm"
+    }
+  },
+  {
+    "filename": "DSF6468",
+    "thumb": "/assets/gallery/thumbs/DSF6468.webp",
+    "full": "/assets/gallery/full/DSF6468.webp",
+    "date_sort": "2026-04-03T18:14:50",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 23mm F2 R WR",
+      "date": "2026-04-03T18:14:50",
+      "date_display": "03.04.2026",
+      "aperture": "f/2.8",
+      "shutter": "1/55s",
+      "iso": "ISO 80",
+      "focal_length": "23mm"
+    }
+  },
+  {
+    "filename": "DSF6457",
+    "thumb": "/assets/gallery/thumbs/DSF6457.webp",
+    "full": "/assets/gallery/full/DSF6457.webp",
+    "date_sort": "2026-04-03T17:48:55",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 23mm F2 R WR",
+      "date": "2026-04-03T17:48:55",
+      "date_display": "03.04.2026",
+      "aperture": "f/2.0",
+      "shutter": "1/2200s",
+      "iso": "ISO 80",
+      "focal_length": "23mm"
+    }
+  },
+  {
+    "filename": "DSF6445",
+    "thumb": "/assets/gallery/thumbs/DSF6445.webp",
+    "full": "/assets/gallery/full/DSF6445.webp",
+    "date_sort": "2026-04-03T17:41:53",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 23mm F2 R WR",
+      "date": "2026-04-03T17:41:53",
+      "date_display": "03.04.2026",
+      "aperture": "f/2.0",
+      "shutter": "1/1100s",
+      "iso": "ISO 80",
+      "focal_length": "23mm"
+    }
+  },
+  {
+    "filename": "DSF6441",
+    "thumb": "/assets/gallery/thumbs/DSF6441.webp",
+    "full": "/assets/gallery/full/DSF6441.webp",
+    "date_sort": "2026-04-03T17:34:56",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 23mm F2 R WR",
+      "date": "2026-04-03T17:34:56",
+      "date_display": "03.04.2026",
+      "aperture": "f/2.0",
+      "shutter": "1/640s",
+      "iso": "ISO 80",
+      "focal_length": "23mm"
+    }
+  },
+  {
     "filename": "DSF4118",
     "thumb": "/assets/gallery/thumbs/DSF4118.webp",
     "full": "/assets/gallery/full/DSF4118.webp",

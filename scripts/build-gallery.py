@@ -6,11 +6,14 @@ Verarbeitet Bilder aus photos/ und generiert:
 - Thumbnails (max 400px Breite, WebP Q80) in assets/gallery/thumbs/
 - Vollbilder (max 1200px Breite, WebP Q85) in assets/gallery/full/
 - Metadaten (EXIF) in assets/gallery/gallery.json
+- Aktualisiert _data/gallery.yml mit neuen Bildern (Kategorie: Unkategorisiert)
 
 Abhängigkeiten:
 - Python 3.8+
 - Pillow: pip install Pillow
   oder: nix-shell -p python3 python3Packages.pillow
+- PyYAML: pip install pyyaml
+  oder: nix-shell -p python3 python3Packages.pillow python3Packages.pyyaml
 
 Verwendung:
     python scripts/build-gallery.py
@@ -27,6 +30,11 @@ from datetime import datetime
 from pathlib import Path
 
 try:
+    import yaml
+except ImportError:
+    yaml = None
+
+try:
     from PIL import Image, ImageDraw, ImageFont
     from PIL.ExifTags import TAGS, GPSTAGS
 except ImportError:
@@ -40,6 +48,7 @@ PHOTOS_DIR = Path("photos")
 THUMBS_DIR = Path("assets/gallery/thumbs")
 FULL_DIR = Path("assets/gallery/full")
 JSON_PATH = Path("assets/gallery/gallery.json")
+YAML_PATH = Path("_data/gallery.yml")
 
 THUMB_MAX_WIDTH = 400
 FULL_MAX_WIDTH = 1200
@@ -356,6 +365,108 @@ def process_image(source: Path) -> dict | None:
         return None
 
 
+def load_gallery_yaml() -> dict:
+    """Lädt die bestehende gallery.yml oder gibt eine leere Struktur zurück."""
+    if not YAML_PATH.exists():
+        return {"categories": []}
+
+    if yaml is None:
+        print("  Warnung: PyYAML nicht installiert, gallery.yml wird nicht aktualisiert.")
+        print("  Installation: pip install pyyaml")
+        return None
+
+    try:
+        with open(YAML_PATH, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f)
+            return data if data else {"categories": []}
+    except Exception as e:
+        print(f"  Warnung: gallery.yml konnte nicht gelesen werden: {e}")
+        return {"categories": []}
+
+
+def get_categorized_files(gallery_data: dict) -> set:
+    """Gibt alle bereits kategorisierten Dateinamen zurück."""
+    files = set()
+    for category in gallery_data.get("categories", []):
+        for image in category.get("images", []):
+            files.add(image.get("file", ""))
+    return files
+
+
+def update_gallery_yaml(processed_files: list[str]) -> int:
+    """
+    Aktualisiert gallery.yml mit neuen Bildern.
+    Neue Bilder werden zur Kategorie 'Unkategorisiert' hinzugefügt.
+    Gibt die Anzahl neuer Bilder zurück.
+    """
+    if yaml is None:
+        return 0
+
+    gallery_data = load_gallery_yaml()
+    if gallery_data is None:
+        return 0
+
+    categorized = get_categorized_files(gallery_data)
+
+    # Finde neue Bilder
+    new_files = []
+    for filename in processed_files:
+        webp_name = f"{filename}.webp"
+        if webp_name not in categorized:
+            new_files.append(webp_name)
+
+    if not new_files:
+        return 0
+
+    # Finde oder erstelle die "Unkategorisiert"-Kategorie
+    uncategorized = None
+    for category in gallery_data.get("categories", []):
+        if category.get("id") == "unkategorisiert":
+            uncategorized = category
+            break
+
+    if uncategorized is None:
+        uncategorized = {
+            "id": "unkategorisiert",
+            "label": {
+                "de": "Unkategorisiert",
+                "en": "Uncategorized"
+            },
+            "images": []
+        }
+        gallery_data["categories"].append(uncategorized)
+
+    # Neue Bilder hinzufügen
+    for webp_name in new_files:
+        uncategorized["images"].append({
+            "file": webp_name,
+            "alt": {
+                "de": "Neues Bild - Beschreibung hinzufügen",
+                "en": "New image - add description"
+            }
+        })
+
+    # YAML schreiben
+    try:
+        # Custom representer für bessere Formatierung
+        def str_representer(dumper, data):
+            if '\n' in data:
+                return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
+            return dumper.represent_scalar('tag:yaml.org,2002:str', data)
+
+        yaml.add_representer(str, str_representer)
+
+        with open(YAML_PATH, "w", encoding="utf-8") as f:
+            f.write("# Gallery categories and images\n")
+            f.write("# Used by _includes/gallery.html\n\n")
+            yaml.dump(gallery_data, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+
+        return len(new_files)
+    except Exception as e:
+        print(f"  Fehler beim Schreiben von gallery.yml: {e}")
+        return 0
+
+
 def main():
     print("=== Galerie-Build-Script ===\n")
 
@@ -401,6 +512,15 @@ def main():
     JSON_PATH.write_text(json.dumps(gallery_data, indent=2, ensure_ascii=False))
     print(f"\n✓ Metadaten gespeichert: {JSON_PATH}")
     print(f"✓ Verarbeitet: {len(gallery_data)} Bild(er)")
+
+    # gallery.yml aktualisieren
+    processed_filenames = [item["filename"] for item in gallery_data]
+    new_count = update_gallery_yaml(processed_filenames)
+    if new_count > 0:
+        print(f"✓ {new_count} neue(s) Bild(er) zu '{YAML_PATH}' hinzugefügt (Kategorie: Unkategorisiert)")
+        print(f"  → Bitte Kategorien und Alt-Texte in '{YAML_PATH}' anpassen")
+    elif yaml is not None:
+        print(f"✓ Keine neuen Bilder für '{YAML_PATH}'")
 
 
 if __name__ == "__main__":
