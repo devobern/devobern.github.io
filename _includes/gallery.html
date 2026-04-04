@@ -1,0 +1,38 @@
+{% assign lang = page.lang | default: "de" %}
+{% assign all_label = "Alle" %}
+{% if lang == "en" %}
+  {% assign all_label = "All" %}
+{% endif %}
+
+<div class="gallery-filters" role="tablist" aria-label="{% if lang == 'en' %}Filter photos by category{% else %}Fotos nach Kategorie filtern{% endif %}">
+  <button class="gallery-filter gallery-filter--active" data-category="all" role="tab" aria-selected="true">
+    {{ all_label }}
+  </button>
+  {% for cat in site.data.gallery.categories %}
+    <button class="gallery-filter" data-category="{{ cat.id }}" role="tab" aria-selected="false">
+      {{ cat.label[lang] | default: cat.label.de }}
+    </button>
+  {% endfor %}
+</div>
+
+<div id="gallery-grid" class="gallery-masonry">
+  {% for cat in site.data.gallery.categories %}
+    {% for img in cat.images %}
+      <button class="gallery-item"
+              data-category="{{ cat.id }}"
+              data-file="{{ img.file }}"
+              data-alt="{{ img.alt[lang] | default: img.alt.de }}"
+              data-category-label="{{ cat.label[lang] | default: cat.label.de }}"
+              aria-label="{{ img.alt[lang] | default: img.alt.de }}">
+        <img src="/assets/gallery/thumbs/{{ img.file }}"
+             alt="{{ img.alt[lang] | default: img.alt.de }}"
+             loading="lazy" />
+        <div class="gallery-item-overlay">
+          <span class="gallery-item-category">{{ cat.label[lang] | default: cat.label.de }}</span>
+        </div>
+      </button>
+    {% endfor %}
+  {% endfor %}
+</div>
+
+<script src="/assets/js/gallery.js"></script>

@@ -1,0 +1,118 @@
+# Gallery categories and images
+# Used by _includes/gallery.html
+# Images ordered by date (newest first) within each category
+
+categories:
+- id: landschaften
+  label:
+    de: Landschaften
+    en: Landscapes
+  images:
+  # 2025-03-02
+  - file: DSF3502.webp
+    alt:
+      de: Skilift mit Menschen auf der Skipiste in Schwarzweiss
+      en: Ski lift with people on the slope in black and white
+  # 2024-07-17
+  - file: DSCF0733.webp
+    alt:
+      de: Felsige Küste mit Badenden im türkisen Meer
+      en: Rocky coastline with swimmers in turquoise sea
+  # 2024-07-17
+  - file: DSCF0730.webp
+    alt:
+      de: Küstenlandschaft in Schwarzweiss
+      en: Coastal landscape in black and white
+  # 2024-07-17
+  - file: DSCF0688.webp
+    alt:
+      de: Kleiner Hafen mit Booten an der Küste
+      en: Small harbor with boats on the coast
+
+- id: bouldern
+  label:
+    de: Bouldern
+    en: Bouldering
+  images:
+  # 2025-11-08
+  - file: DSF4118.webp
+    alt:
+      de: Hände beim Verbinden der Finger nach dem Bouldern in Schwarzweiss
+      en: Hands connecting fingers after bouldering in black and white
+  # 2025-11-08
+  - file: DSF4093.webp
+    alt:
+      de: Hände beim Greifen an einer Felswand in Schwarzweiss
+      en: Hands gripping a rock face in black and white
+
+- id: street
+  label:
+    de: Street
+    en: Street
+  images:
+  # 2026-04-03
+  - file: DSF6479.webp
+    alt:
+      de: Vespa vor einer Hausfassade mit Graffiti in Schwarzweiss
+      en: Vespa in front of a building facade with graffiti in black and white
+  # 2026-04-03
+  - file: DSF6468.webp
+    alt:
+      de: Historisches Gebäude gerahmt von moderner Architektur in Schwarzweiss
+      en: Historic building framed by modern architecture in black and white
+  # 2026-04-03
+  - file: DSF6457.webp
+    alt:
+      de: Fussgänger auf einer Brücke bei bewölktem Himmel in Schwarzweiss
+      en: Pedestrians on a bridge under cloudy sky in black and white
+  # 2026-04-03
+  - file: DSF6445.webp
+    alt:
+      de: Skatepark mit Graffiti unter der Eisenbahnbrücke in Schwarzweiss
+      en: Skate park with graffiti under the railway bridge in black and white
+  # 2026-04-03
+  - file: DSF6441.webp
+    alt:
+      de: Blick durch einen Tunnel auf ein Wohngebäude in Schwarzweiss
+      en: View through a tunnel towards an apartment building in black and white
+  # 2025-10-30
+  - file: DSF3983.webp
+    alt:
+      de: Blick zwischen Gebäuden auf die Basler Skyline in Schwarzweiss
+      en: View between buildings towards Basel skyline in black and white
+  # 2024-11-30
+  - file: DSF3195.webp
+    alt:
+      de: Geschwungene Betonbrücke in Schwarzweiss
+      en: Curved concrete bridge in black and white
+  # 2024-09-01
+  - file: DSCF2103.webp
+    alt:
+      de: Badeplattformen auf einem See
+      en: Swimming platforms on a lake
+  # 2024-08-20
+  - file: DSCF1885.webp
+    alt:
+      de: Farbige Regenschirme in einer Gasse
+      en: Colorful umbrellas in an alleyway
+  # 2024-07-17
+  - file: DSCF0717.webp
+    alt:
+      de: Bunte Häuser in einer italienischen Gasse
+      en: Colorful houses in an Italian alley
+
+- id: details
+  label:
+    de: Details
+    en: Details
+  images:
+  # 2024-09-01
+  - file: DSCF2101.webp
+    alt:
+      de: Farbige handgemachte Keramik
+      en: Colorful handmade ceramics
+  # 2024-08-08
+  - file: DSCF1544.webp
+    alt:
+      de: Traditionelle Teppiche und Kissen
+      en: Traditional carpets and cushions
