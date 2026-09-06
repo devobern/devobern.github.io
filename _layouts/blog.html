@@ -1,33 +1,48 @@
 ---
 layout: default
 ---
+{%- include i18n.html -%}
 <section class="blog-index">
   <h1>{{ page.title | default: 'Blog' }}</h1>
-  {% if site.posts and site.posts.size > 0 %}
-  {% assign grouped = site.posts | group_by_exp: 'post', 'post.ref | default: post.id' %}
+  <p class="blog-feed"><a href="{{ '/feed.' | append: page_lang | append: '.xml' | relative_url }}">{{ t.blog_feed }}</a></p>
+
+  {%- comment -%}
+    Beiträge werden über `ref` gruppiert. Bevorzugt wird die Fassung in der
+    aktuellen Seitensprache; existiert sie nicht, wird die verfügbare Fassung
+    verlinkt und als solche gekennzeichnet.
+  {%- endcomment -%}
+  {%- assign default_lang = site.default_lang | default: 'de' -%}
+  {%- assign grouped = site.posts | group_by_exp: 'post', 'post.ref | default: post.id' -%}
+  {%- assign rendered = 0 -%}
   <ul class="post-list">
-    {% for group in grouped %}
-      {% assign posts_in_group = group.items | sort: 'date' | reverse %}
-      {% assign primary = posts_in_group[0] %}
-      <li>
-        <a class="post-link" href="{{ primary.url | relative_url }}">{{ primary.title }}</a>
-        <span class="post-date">{{ primary.date | date: '%d.%m.%Y' }}</span>
-        {% if posts_in_group.size > 1 %}
-          <span class="post-lang-badges">
-            {% for p in posts_in_group %}
-              {% if p.lang %}
-                <span class="post-lang-badge">{{ p.lang | upcase }}</span>
-              {% endif %}
-            {% endfor %}
-          </span>
-        {% elsif primary.lang %}
-          <span class="post-lang-badges"><span class="post-lang-badge">{{ primary.lang | upcase }}</span></span>
-        {% endif %}
-        {% if primary.excerpt %}<p class="post-excerpt">{{ primary.excerpt | strip_html | truncate: 160 }}</p>{% endif %}
-      </li>
-    {% endfor %}
+  {%- for group in grouped -%}
+    {%- assign posts_in_group = group.items | sort: 'date' | reverse -%}
+    {%- assign entry = false -%}
+    {%- for p in posts_in_group -%}
+      {%- assign p_lang = p.lang | default: default_lang -%}
+      {%- if p_lang == page_lang and entry == false -%}{%- assign entry = p -%}{%- endif -%}
+    {%- endfor -%}
+    {%- assign translated = true -%}
+    {%- if entry == false -%}
+      {%- assign entry = posts_in_group[0] -%}
+      {%- assign translated = false -%}
+    {%- endif -%}
+    {%- assign entry_lang = entry.lang | default: default_lang -%}
+    {%- assign entry_li = site.data.i18n[entry_lang] -%}
+    {%- assign rendered = rendered | plus: 1 %}
+    <li>
+      <a class="post-link" href="{{ entry.url | relative_url }}"{% unless translated %} lang="{{ entry_li.html_lang }}" hreflang="{{ entry_li.html_lang }}"{% endunless %}>{{ entry.title }}</a>
+      <span class="post-date"><time datetime="{{ entry.date | date_to_xmlschema }}">{{ entry.date | date: t.date_format }}</time></span>
+      {%- unless translated %}
+      <span class="post-lang-badge" title="{{ t.blog_only_in | replace: '%LANG%', entry_li.name | escape }}">{{ entry_li.name_short }}</span>
+      {%- endunless %}
+      {%- if entry.excerpt %}
+      <p class="post-excerpt">{{ entry.excerpt | strip_html | normalize_whitespace | truncate: 200 }}</p>
+      {%- endif %}
+    </li>
+  {%- endfor %}
   </ul>
-  {% else %}
-    <p>Keine Beiträge vorhanden.</p>
-  {% endif %}
+  {%- if rendered == 0 %}
+  <p>{{ t.blog_empty }}</p>
+  {%- endif %}
 </section>

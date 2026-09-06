@@ -5,10 +5,19 @@ baseurl: ""
 locale: "de-CH"
 show_banner: false
 
+# --- Mehrsprachigkeit ---------------------------------------------------
+# Deutsch liegt auf den bestehenden Root-URLs, Englisch unter /en/.
+# UI-Strings: _data/i18n.yml, Navigation: _data/navigation.yml.
+# Seiten/Posts werden über das gemeinsame Feld `ref` als Übersetzungen
+# desselben Inhalts verknüpft.
+default_lang: "de"
+languages: ["de", "en"]
+
 # Autorprofil
 author:
   name: "Nicolin Dora"
-  avatar: "/assets/images/avatar.jpg"
+  email: "mail@nicolin-dora.ch"
+  avatar: "/assets/images/avatar_c.jpg"
   bio: "Kurzprofil folgt."
   location: "Bern/Biel, Schweiz"
   links:
@@ -44,11 +53,13 @@ defaults:
       path: "_pages"
     values:
       layout: page
+      lang: "de"
   # Posts use the page layout, which shows title and date
   - scope:
       type: posts
     values:
       layout: page
+      lang: "de"
 
 social:
   type: "Person"
@@ -58,3 +69,16 @@ markdown: kramdown
 permalink: pretty
 include:
   - .well-known
+
+# Nicht veröffentlichen (Jekyll-Defaults plus projektspezifische Pfade)
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - scripts/
+  - photos/
+  - vendor/
+  - .bundle/
+  - node_modules/
+  - .sass-cache/
+  - .jekyll-cache/

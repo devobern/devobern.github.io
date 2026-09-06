@@ -1,13 +1,12 @@
 {% include head.html %}
 <body class="theme">
-  {% if site.show_banner %}
-  <div class="site-banner" role="status">
-    🚧 Diese Seite ist noch im Aufbau. Inhalte werden laufend ergänzt.
-  </div>
-  {% endif %}
+  {%- if site.show_banner %}
+  <div class="site-banner" role="status">{{ t.banner }}</div>
+  {%- endif %}
   {% include header.html %}
   <main id="content" class="container" role="main">
     {{ content }}
   </main>
   {% include footer.html %}
 </body>
+</html>

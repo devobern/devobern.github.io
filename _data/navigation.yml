@@ -1,11 +1,48 @@
+# Navigation pro Sprache. `ref` verbindet die Einträge sprachübergreifend und
+# wird für die Aktiv-Markierung verwendet.
 main:
-  - title: "Über mich"
-    url: /about/
-  - title: "Blog"
-    url: /blog/
-  - title: "Projekte"
-    url: /projects/
-  - title: "Fotografie"
-    url: /gallery/
-  - title: "Lebenslauf"
-    url: /cv/
+  - ref: about
+    title:
+      de: "Über mich"
+      en: "About"
+    url:
+      de: /about/
+      en: /en/about/
+  - ref: blog
+    title:
+      de: "Blog"
+      en: "Blog"
+    url:
+      de: /blog/
+      en: /en/blog/
+  - ref: projects
+    title:
+      de: "Projekte"
+      en: "Projects"
+    url:
+      de: /projects/
+      en: /en/projects/
+  - ref: gallery
+    title:
+      de: "Fotografie"
+      en: "Photography"
+    url:
+      de: /gallery/
+      en: /en/gallery/
+  - ref: cv
+    title:
+      de: "Lebenslauf"
+      en: "CV"
+    url:
+      de: /cv/
+      en: /en/cv/
+
+# Sekundäre Links im Footer
+footer:
+  - ref: privacy
+    title:
+      de: "Datenschutz"
+      en: "Privacy"
+    url:
+      de: /privacy/
+      en: /en/privacy/

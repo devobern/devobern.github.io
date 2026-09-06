@@ -1,16 +1,20 @@
+<a class="skip-link" href="#content">{{ t.skip_to_content }}</a>
 <header class="site-header" role="banner">
   <div class="container">
-    <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    {% assign nav = site.data.navigation.main %}
-    {% if nav %}
-    <nav class="site-nav" role="navigation" aria-label="Hauptnavigation">
+    <a class="site-title" href="{{ t.home | relative_url }}">{{ site.title }}</a>
+    {%- assign nav = site.data.navigation.main -%}
+    {%- if nav %}
+    <nav class="site-nav" role="navigation" aria-label="{{ t.nav_aria }}">
       <ul>
-        {% for item in nav %}
-        <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
-        {% endfor %}
+        {%- for item in nav %}
+        {%- assign item_url = item.url[page_lang] -%}
+        {%- if item_url %}
+        <li><a href="{{ item_url | relative_url }}"{% if item.ref == page.ref %} aria-current="page"{% endif %}>{{ item.title[page_lang] | default: item.title[site.default_lang] }}</a></li>
+        {%- endif -%}
+        {%- endfor %}
       </ul>
     </nav>
-    {% endif %}
+    {%- endif %}
+    {%- include lang-alternates.html mode="nav" -%}
   </div>
 </header>
-<!-- Theme toggle moved to footer -->
