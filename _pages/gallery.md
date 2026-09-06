@@ -1,8 +1,9 @@
 ---
-title: Fotografie
 permalink: /gallery/
+title: Fotografie
 lang: de
 ref: gallery
+description: "Eine Auswahl meiner Fotos, aufgenommen mit einer Fujifilm X-T30 II."
 ---
 
 Fotografie ist ein Hobby, das ich erst vor kurzem für mich entdeckt habe. Ich bin noch dabei herauszufinden, welche Art von Bildern mich besonders anspricht, ob Landschaften, Streetfotografie oder etwas ganz anderes. Bis dahin experimentiere ich einfach drauflos.

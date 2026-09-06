@@ -4,6 +4,9 @@ title: "A subtly obvious e-paper room air monitor (Part 1: Why?)"
 excerpt: "Why I built an e-paper room air monitor for my flat and how the first MVP works: monitor unit with e-paper display, sensor and LED panel -> storage and forwarding to a FastAPI backend with SQLite -> visualisation in an interactive dashboard."
 lang: en
 ref: epaper-monitor-teil1
+permalink: /en/blog/epaper-room-air-monitor-part-1/
+# Bestehender Giscus-Thread beibehalten (Term war zuvor `ref`).
+giscus_term: epaper-monitor-teil1
 ---
 
 <div class="tldr">

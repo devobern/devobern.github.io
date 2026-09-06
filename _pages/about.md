@@ -1,6 +1,9 @@
 ---
 permalink: /about/
 title: Über mich
+lang: de
+ref: about
+description: "Nicolin Dora: Cyber Security Analyst, MSc-Student an der BFH. Schwerpunkte Kryptografie, Informationssicherheit und angewandte IT-Sicherheit."
 ---
 
 Ich habe rund sieben Jahre Erfahrung als Cyber Security Analyst (teilweise in Teilzeit) und einen Bachelor in Informatik mit Vertiefung IT Security von der Berner Fachhochschule. Meine Schwerpunkte liegen in Kryptografie, Informationssicherheit und angewandter IT-Sicherheit.
@@ -16,7 +19,9 @@ In meiner Freizeit gehe ich gerne bouldern oder eine Runde joggen. Zudem betreib
 
 Weitere Links findest du auch im Footer (GitHub, LinkedIn). Wenn du mir vertrauliche Infos schickst, nutze bitte GPG/PGP oder Threema.
 
+Sicherheitsrelevante Meldungen: siehe [security.txt](/.well-known/security.txt) und die [Security Policy](/SECURITY/).
+
 ## Lebenslauf & Projekte
 
 - Vollständiger **Lebenslauf**: <a href="/cv/">Web</a>
-- Ausgewählte **Projekte** findest du auf der Projekte‑Seite.
+- Ausgewählte **Projekte** findest du auf der [Projekte‑Seite](/projects/).

@@ -1,8 +1,9 @@
 ---
+permalink: /en/gallery/
 title: Photography
-permalink: /gallery/en/
 lang: en
 ref: gallery
+description: "A selection of my photos, shot with a Fujifilm X-T30 II."
 ---
 
 Photography is a hobby I've only recently discovered. I'm still figuring out what kind of images appeal to me most, whether it's landscapes, street photography, or something entirely different. Until then, I'm just experimenting.
@@ -13,4 +14,4 @@ Below you'll find a selection of images that I'm happy with.
 
 {% include gallery.html %}
 
-{% include comments-en.html %}
+{% include comments.html %}
