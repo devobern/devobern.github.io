@@ -39,3 +39,7 @@ Gemfile.lock
 # Falls du die Originale auch versionieren möchtest, kommentiere die nächste Zeile aus:
 photos/*
 !photos/.gitkeep
+# Ausnahme: Uploads vom Smartphone werden versioniert, damit sie über die
+# GitHub-Weboberfläche hochgeladen werden können. Die Action löscht sie
+# nach der Verarbeitung wieder.
+!photos/incoming/

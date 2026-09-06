@@ -154,12 +154,13 @@ Die Galerie zeigt Fotos unter `/gallery/`. Bilder werden als WebP komprimiert un
 - Python 3.8+
 - Pillow
 - PyYAML
+- pillow-heif (optional, nur für HEIC/HEIF vom iPhone)
 
 Installation:
 ```bash
-pip install Pillow pyyaml
+pip install Pillow pyyaml pillow-heif
 # oder mit Nix:
-nix-shell -p python3 python3Packages.pillow python3Packages.pyyaml
+nix-shell -p python3 python3Packages.pillow python3Packages.pyyaml python3Packages.pillow-heif
 ```
 
 ### Workflow: Neue Fotos hinzufügen
@@ -208,12 +209,91 @@ in die gewünschte Kategorie und passe den Alt-Text an.
 
 **Hinweis:** Die Originale in `photos/` werden nicht committed (siehe `.gitignore`).
 
+### Upload direkt vom Smartphone
+
+Für den Weg ohne Rechner gibt es `photos/incoming/`. Dieser Ordner ist als
+einziger unterhalb von `photos/` versioniert, damit Bilder über die
+GitHub-Weboberfläche hochgeladen werden können.
+
+1. In Lightroom exportieren (siehe unten) und die Datei in *Dateien* bzw.
+   *Files* ablegen, nicht in der Fotos-App lassen.
+2. Auf github.com im Browser: `photos/incoming/` öffnen, *Add file →
+   Upload files*, Datei aus *Dateien* wählen, direkt auf `main` committen.
+3. `.github/workflows/gallery.yml` verarbeitet den Upload: Thumbnail,
+   Vollbild mit Wasserzeichen, Metadaten, Eintrag in `_data/gallery.yml`.
+   Anschliessend löscht die Action das Original wieder aus `photos/incoming/`
+   und committet das Ergebnis nach `main`.
+4. In `_data/gallery.yml` noch Kategorie und Alt-Text setzen (der
+   Web-Editor von GitHub funktioniert auf dem Handy).
+
+Der Copyright-String entsteht dabei genau wie beim lokalen Lauf im
+Build-Script, das Wasserzeichen ist also identisch mit dem der übrigen Bilder.
+
+**Lightroom-Export:** Als Metadaten *Alle* wählen, nicht *Nur Copyright*.
+Sonst werden Kamera, Objektiv, Blende und ISO aus der Datei entfernt und die
+Specs-Zeile in der Galerie bleibt leer. Lightrooms eigenes Wasserzeichen wird
+nicht gebraucht, das setzt das Build-Script. Als Grösse genügt die lange Kante
+mit rund 2048 px: die Galerie skaliert ohnehin auf 1200 px herunter, und das
+Original landet mit dem Upload für immer in der Git-History.
+
+**Ohne Netz oder für viele Bilder** bleibt der lokale Weg über `photos/` und
+`python scripts/build-gallery.py` der schnellere.
+
+**Warum `--merge` im Workflow:** Auf dem Runner liegt nur das frisch
+hochgeladene Original, alle übrigen liegen lokal. Ohne `--merge` würde
+`gallery.json` auf dieses eine Bild zusammenschrumpfen. Mit `--merge` bleiben
+die Einträge früherer Läufe erhalten, solange ihr WebP noch im Repository
+liegt.
+
+### Fotos vom Smartphone
+
+Dieser Abschnitt gilt für Fotos, die mit dem Handy aufgenommen wurden,
+unabhängig vom Upload-Weg.
+
+Smartphone-Fotos laufen durch denselben Weg wie Fotos aus der Systemkamera:
+ins `photos/`-Verzeichnis legen, `build-gallery.py` ausführen. Wasserzeichen
+(`© <Aufnahmejahr> Nicolin Dora`) und Specs-Zeile entstehen automatisch, sofern
+die EXIF-Daten im Original noch vorhanden sind.
+
+**Übertragung, die EXIF erhält:** USB-Kabel, AirDrop, SD-Karte, Nextcloud/Syncthing,
+Google Fotos (Download des Originals), iCloud Fotos. Bei iOS beim Teilen unter
+"Optionen" *Alle Fotodaten* aktiviert lassen.
+
+**Übertragung, die EXIF entfernt:** WhatsApp, Signal, Telegram (als "Bild" statt
+"Datei"), Instagram, die meisten Web-Uploads. Danach fehlen Kameradaten
+vollständig, und das Wasserzeichen nutzt das Datei-Datum statt des
+Aufnahmedatums. Das Script weist beim Build darauf hin.
+
+**HEIC vom iPhone:** wird nur mit installiertem `pillow-heif` verarbeitet, sonst
+meldet das Script die übersprungenen Dateien. Alternativ am iPhone unter
+*Einstellungen → Kamera → Formate* auf *Maximale Kompatibilität* stellen, dann
+nimmt das Gerät JPEG auf.
+
+**Kameraname:** Viele Android-Geräte schreiben nur den Modellcode ins EXIF
+(z. B. `SM-S928B`). Für einen lesbaren Namen einen Eintrag in `CAMERA_NAMES`
+in `scripts/build-gallery.py` ergänzen:
+
+```python
+CAMERA_NAMES = {
+    "SM-S928B": "Samsung Galaxy S24 Ultra",
+}
+```
+
+**Brennweite:** Handy-Objektive sind physikalisch sehr kurz. Steht das
+Kleinbild-Äquivalent im EXIF, wird es ergänzt: `6.8mm (≙ 24mm)`. Das gilt auch
+für die APS-C-Aufnahmen (`23mm (≙ 35mm)`); die Angaben aktualisieren sich beim
+nächsten Build-Lauf.
+
 ## CI
 
 Bei Pushes und Pull Requests auf `main` läuft ein Build inkl. HTMLProofer:
 
 - `.github/workflows/ci.yml` (läuft mit `permissions: contents: read`)
 - `.github/workflows/codeql.yml`
+
+Dazu kommt `.github/workflows/gallery.yml`: Er läuft nur bei Änderungen unter
+`photos/incoming/` und braucht als einziger Workflow `contents: write`, weil er
+die generierten Galeriedateien nach `main` zurückschreibt.
 
 ## Sicherheit
 
