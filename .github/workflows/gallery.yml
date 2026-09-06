@@ -1,0 +1,80 @@
+name: Galerie
+
+# Verarbeitet Fotos, die über die GitHub-Weboberfläche in photos/incoming/
+# hochgeladen wurden: Thumbnails, Vollbilder mit Wasserzeichen und Metadaten.
+# Damit lassen sich Bilder direkt vom Smartphone veröffentlichen, ohne das
+# Build-Script lokal auszuführen.
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'photos/incoming/**'
+  workflow_dispatch:
+
+# Der Workflow schreibt die generierten Dateien zurück nach main und braucht
+# dafür Schreibrechte. Alle übrigen Berechtigungen bleiben entzogen.
+permissions:
+  contents: write
+
+# Zwei gleichzeitige Läufe würden sich beim Zurückschreiben in die Quere
+# kommen; laufende Läufe werden deshalb nicht abgebrochen, sondern eingereiht.
+concurrency:
+  group: gallery-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Uploads suchen
+        id: uploads
+        run: |
+          count=$(find photos/incoming -type f ! -name '.gitkeep' | wc -l)
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          echo "Gefundene Uploads: $count"
+
+      - uses: actions/setup-python@v5
+        if: steps.uploads.outputs.count != '0'
+        with:
+          python-version: '3.12'
+
+      - name: Abhängigkeiten installieren
+        if: steps.uploads.outputs.count != '0'
+        run: pip install Pillow pyyaml pillow-heif
+
+      - name: Galerie bauen
+        if: steps.uploads.outputs.count != '0'
+        # --merge, weil auf dem Runner nur die neuen Originale liegen: die
+        # Einträge der bereits verarbeiteten Bilder bleiben so erhalten.
+        run: python scripts/build-gallery.py --merge
+
+      - name: Originale entfernen
+        if: steps.uploads.outputs.count != '0'
+        # Die Originale sind nach der Verarbeitung überflüssig und würden das
+        # Repository sonst mit jedem Upload weiter aufblähen.
+        run: find photos/incoming -type f ! -name '.gitkeep' -delete
+
+      - name: Ergebnis committen
+        if: steps.uploads.outputs.count != '0'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/gallery _data/gallery.yml photos/incoming
+          if git diff --cached --quiet; then
+            echo 'Keine Änderungen zu committen.'
+            exit 0
+          fi
+          git commit -m 'chore(gallery): Uploads verarbeitet'
+          git push
+
+      - name: Nächste Schritte
+        if: steps.uploads.outputs.count != '0'
+        run: |
+          {
+            echo '### Galerie aktualisiert'
+            echo
+            echo 'Neue Bilder liegen in `_data/gallery.yml` unter "Unkategorisiert".'
+            echo 'Dort noch Kategorie und Alt-Text setzen, danach ist der Beitrag fertig.'
+          } >> "$GITHUB_STEP_SUMMARY"

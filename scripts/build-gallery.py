@@ -20,11 +20,19 @@ Abhängigkeiten:
 
 Verwendung:
     python scripts/build-gallery.py
+    python scripts/build-gallery.py --merge
 
 Das Script ist idempotent: bereits verarbeitete Bilder werden übersprungen,
 es sei denn, das Original ist neuer als die generierte Version.
+
+Ohne --merge beschreibt gallery.json genau die Bilder, die gerade in photos/
+liegen. Mit --merge bleiben zusätzlich die Einträge früherer Läufe erhalten,
+solange ihr generiertes WebP noch existiert. Das ist der Modus für den
+Upload-Workflow (.github/workflows/gallery.yml), bei dem auf dem Runner nur
+die neu hochgeladenen Originale vorliegen.
 """
 
+import argparse
 import json
 import os
 import re
@@ -57,6 +65,9 @@ except ImportError:
 
 # Konfiguration
 PHOTOS_DIR = Path("photos")
+# Ordner für Uploads vom Smartphone; anders als photos/ ist er versioniert,
+# damit Bilder direkt über die GitHub-Weboberfläche hineingelegt werden können.
+INCOMING_DIR = PHOTOS_DIR / "incoming"
 THUMBS_DIR = Path("assets/gallery/thumbs")
 FULL_DIR = Path("assets/gallery/full")
 JSON_PATH = Path("assets/gallery/gallery.json")
@@ -604,7 +615,52 @@ def update_gallery_yaml(processed_files: list[str]) -> int:
         return 0
 
 
+def merge_previous_entries(gallery_data: list) -> int:
+    """
+    Ergänzt gallery_data um Einträge aus einem früheren Lauf.
+
+    Gebraucht wird das im Upload-Workflow: dort liegt auf dem Runner nur das
+    frisch hochgeladene Original, alle übrigen Originale liegen lokal. Ohne
+    Merge würde gallery.json auf das eine neue Bild zusammenschrumpfen.
+
+    Übernommen wird ein alter Eintrag nur, wenn sein Vollbild noch im
+    Repository liegt; gelöschte Bilder verschwinden also weiterhin.
+    """
+    if not JSON_PATH.exists():
+        return 0
+
+    try:
+        previous = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        print(f"  Warnung: bestehende {JSON_PATH} nicht lesbar: {e}")
+        return 0
+
+    known = {item.get("filename") for item in gallery_data}
+    kept = 0
+
+    for entry in previous:
+        name = entry.get("filename")
+        if not name or name in known:
+            continue
+        if not (FULL_DIR / f"{name}.webp").exists():
+            continue
+        gallery_data.append(entry)
+        known.add(name)
+        kept += 1
+
+    return kept
+
+
 def main():
+    parser = argparse.ArgumentParser(description="Baut die Galerie aus photos/.")
+    parser.add_argument(
+        "--merge",
+        action="store_true",
+        help="Einträge früherer Läufe in gallery.json behalten, "
+             "solange das zugehörige WebP noch existiert",
+    )
+    args = parser.parse_args()
+
     print("=== Galerie-Build-Script ===\n")
 
     # Prüfen, ob photos/ existiert
@@ -622,10 +678,15 @@ def main():
     if HEIF_SUPPORT:
         extensions |= HEIF_EXTENSIONS
 
+    source_dirs = [PHOTOS_DIR]
+    if INCOMING_DIR.is_dir():
+        source_dirs.append(INCOMING_DIR)
+
     images = []
-    for ext in extensions:
-        images.extend(PHOTOS_DIR.glob(f"*{ext}"))
-        images.extend(PHOTOS_DIR.glob(f"*{ext.upper()}"))
+    for directory in source_dirs:
+        for ext in extensions:
+            images.extend(directory.glob(f"*{ext}"))
+            images.extend(directory.glob(f"*{ext.upper()}"))
 
     # Duplikate entfernen (falls .jpg und .JPG)
     images = list(set(images))
@@ -633,7 +694,7 @@ def main():
     # HEIC/HEIF vom iPhone nicht stillschweigend übergehen
     if not HEIF_SUPPORT:
         skipped_heif = [
-            path for path in PHOTOS_DIR.iterdir()
+            path for directory in source_dirs for path in directory.iterdir()
             if path.suffix.lower() in HEIF_EXTENSIONS
         ]
         if skipped_heif:
@@ -646,7 +707,7 @@ def main():
             print("Alternative: am iPhone unter Einstellungen > Kamera > Formate")
             print("'Maximale Kompatibilität' wählen, dann wird JPEG aufgenommen.\n")
 
-    if not images:
+    if not images and not args.merge:
         print(f"Keine Bilder in '{PHOTOS_DIR}' gefunden.")
         print(f"Unterstützte Formate: {', '.join(sorted(extensions))}")
         # Leere gallery.json erstellen
@@ -661,6 +722,10 @@ def main():
         result = process_image(img_path)
         if result:
             gallery_data.append(result)
+
+    if args.merge:
+        kept = merge_previous_entries(gallery_data)
+        print(f"\n✓ Aus früheren Läufen übernommen: {kept} Bild(er)")
 
     # Nach Datum sortieren (neueste zuerst)
     gallery_data.sort(key=lambda x: x.get("date_sort", ""), reverse=True)
