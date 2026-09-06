@@ -1,0 +1,46 @@
+{%- comment -%}
+  Sucht die Übersetzungen der aktuellen Seite über das gemeinsame `ref`-Feld.
+
+  Parameter:
+    mode="head" -> <link rel="alternate" hreflang="..."> (nur echte Übersetzungen)
+    mode="nav"  -> Sprachumschalter; ohne Übersetzung wird auf die
+                   Sprach-Startseite verlinkt statt auf einen toten Link.
+{%- endcomment -%}
+{%- assign default_lang = site.default_lang | default: 'de' -%}
+{%- assign siblings = '' | split: '' -%}
+{%- if page.ref -%}
+  {%- assign sibling_pages = site.pages | where: 'ref', page.ref -%}
+  {%- assign sibling_posts = site.posts | where: 'ref', page.ref -%}
+  {%- assign siblings = sibling_pages | concat: sibling_posts -%}
+{%- endif -%}
+{%- if include.mode == 'nav' -%}
+<nav class="lang-switch" aria-label="{{ t.lang_switch_aria }}">
+  <span class="visually-hidden">{{ t.lang_switch_label }}:</span>
+  {%- for l in site.languages -%}
+    {%- assign li = site.data.i18n[l] -%}
+    {%- assign target = false -%}
+    {%- for s in siblings -%}
+      {%- assign s_lang = s.lang | default: default_lang -%}
+      {%- if s_lang == l -%}{%- assign target = s -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if l == page_lang -%}
+  <span class="lang-chip lang-chip--active" aria-current="true" lang="{{ li.html_lang }}">{{ li.name_short }}</span>
+    {%- elsif target -%}
+  <a class="lang-chip" href="{{ target.url | relative_url }}" lang="{{ li.html_lang }}" hreflang="{{ li.hreflang }}" title="{{ li.name | escape }}">{{ li.name_short }}</a>
+    {%- else -%}
+  <a class="lang-chip lang-chip--fallback" href="{{ li.home | relative_url }}" lang="{{ li.html_lang }}" hreflang="{{ li.hreflang }}" title="{{ li.name | escape }}">{{ li.name_short }}</a>
+    {%- endif -%}
+  {%- endfor -%}
+</nav>
+{%- else -%}
+  {%- for s in siblings -%}
+    {%- assign s_lang = s.lang | default: default_lang -%}
+    {%- assign sli = site.data.i18n[s_lang] -%}
+    {%- if sli -%}
+<link rel="alternate" hreflang="{{ sli.hreflang }}" href="{{ s.url | absolute_url }}">
+      {%- if s_lang == default_lang %}
+<link rel="alternate" hreflang="x-default" href="{{ s.url | absolute_url }}">
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
