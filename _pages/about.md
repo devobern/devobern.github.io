@@ -19,7 +19,7 @@ In meiner Freizeit gehe ich gerne bouldern oder eine Runde joggen. Zudem betreib
 
 Weitere Links findest du auch im Footer (GitHub, LinkedIn). Wenn du mir vertrauliche Infos schickst, nutze bitte GPG/PGP oder Threema.
 
-Sicherheitsrelevante Meldungen: siehe [security.txt](/.well-known/security.txt) und die [Security Policy](/SECURITY/).
+Sicherheitsrelevante Meldungen: siehe [security.txt](/.well-known/security.txt).
 
 ## Lebenslauf & Projekte
 
