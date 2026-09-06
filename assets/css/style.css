@@ -1,4 +1,7 @@
 :root{
+  /* Umbruchpunkt der Hauptnavigation. assets/js/nav.js liest diesen Wert
+     aus, damit CSS und JavaScript denselben Punkt verwenden. */
+  --nav-breakpoint: 48rem;
   --bg: #ffffff;
   --fg: #111111;
   --muted: #666666;
@@ -53,18 +56,75 @@ img, video{max-width:100%; height:auto}
 /* Header */
 .site-header{border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--bg); z-index:10}
 .site-header .container{ display:flex; align-items:center; gap:.75rem; flex-wrap:wrap }
-.site-header .site-title{font-weight:700; text-decoration:none; color:var(--fg); margin-right:1rem}
-.site-nav{ margin-left:auto }
+.site-header .site-title{font-weight:700; text-decoration:none; color:var(--fg); order:1}
+.site-nav{ order:2; margin-left:auto; font-size:.85rem }
 .site-nav ul{list-style:none; margin:0; padding:0; display:flex; gap:.5rem; flex-wrap:wrap}
 /* Nicer delimiters: subtle divider using border, accessible and styleable */
-.site-nav li{ display:inline-flex; align-items:center; padding-inline:.5rem }
+.site-nav li{ display:inline-flex; align-items:center; padding-inline:.45rem }
 /* Divider with symmetric spacing: rely on equal left/right padding only */
 .site-nav li + li{ border-inline-start:1px solid var(--border) }
 .site-nav a{color:var(--link); text-decoration:none}
 .site-nav a:focus, .site-nav a:hover{ text-decoration: underline; }
-/* Theme toggle */
-.theme-toggle{ margin-left:auto; background:none; border:1px solid var(--border); color:var(--fg); border-radius:.5rem; padding:.25rem .5rem; cursor:pointer }
-.theme-toggle:hover,.theme-toggle:focus-visible{ border-color: var(--muted) }
+
+/* Site controls: language switch, theme toggle and the mobile menu button
+   form one group, so the two settings always sit together. */
+.site-controls{ order:3; display:flex; align-items:center; gap:.4rem; margin-left:auto }
+.site-nav + .site-controls{ margin-left:.75rem }
+
+/* Shared look for the buttons and chips inside the control group.
+   `display` is deliberately not set here: the menu button decides its own
+   visibility per breakpoint and must not be outranked by this rule. */
+.site-controls .lang-chip,
+.site-controls .theme-toggle,
+.site-controls .nav-toggle{
+  box-sizing:border-box;
+  align-items:center;
+  justify-content:center;
+  gap:.35rem;
+  min-height:2rem;
+  padding:.2rem .55rem;
+  border:1px solid var(--border);
+  border-radius:.5rem;
+  background:none;
+  color:var(--muted);
+  font:inherit;
+  font-size:.85rem;
+  line-height:1;
+  text-decoration:none;
+  cursor:pointer;
+}
+.site-controls .lang-chip:hover,
+.site-controls .lang-chip:focus-visible,
+.site-controls .theme-toggle:hover,
+.site-controls .theme-toggle:focus-visible,
+.site-controls .nav-toggle:hover,
+.site-controls .nav-toggle:focus-visible{ border-color:var(--link); color:var(--link) }
+.site-controls .lang-chip--active{
+  background: color-mix(in srgb, var(--border) 60%, transparent);
+  border-color:var(--border);
+  color:var(--fg);
+  cursor:default;
+}
+.site-controls .lang-chip,
+.site-controls .theme-toggle{ display:inline-flex }
+.site-controls .theme-toggle{ color:var(--fg) }
+.theme-toggle-icon{ font-size:1rem; line-height:1 }
+
+/* The language chips keep a hairline separating them from the buttons */
+.site-controls .lang-switch{
+  gap:.25rem;
+  margin:0;
+  padding-right:.4rem;
+  border-right:1px solid var(--border);
+}
+
+/* Menu button: hidden on desktop, and hidden entirely until nav.js
+   enables it, so the plain list stays usable without JavaScript. */
+.site-controls .nav-toggle{ display:none }
+.nav-toggle-icon{ flex:none }
+.nav-toggle .nav-toggle-cross{ display:none }
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars{ display:none }
+.nav-toggle[aria-expanded="true"] .nav-toggle-cross{ display:inline }
 
 /* Main */
 .page-title{margin-top:0; font-size:1.75rem}
@@ -146,57 +206,95 @@ img, video{max-width:100%; height:auto}
   top:.5rem;
 }
 
-/* Global language switch in the header */
-.lang-switch{
-  display:flex;
-  align-items:center;
-  gap:.25rem;
-  margin-left:.75rem;
-  font-size:.85rem;
-}
-.lang-chip{
-  display:inline-block;
-  padding:.1rem .5rem;
-  border-radius:999px;
-  border:1px solid var(--border);
-  text-decoration:none;
-  color:var(--muted);
-}
-.lang-chip:hover,
-.lang-chip:focus-visible{
-  border-color:var(--link);
-  color:var(--link);
-}
-.lang-chip--active{
-  background: color-mix(in srgb, var(--border) 60%, transparent);
-  border-color:var(--border);
-  color:var(--fg);
-}
+/* Global language switch: sits inside .site-controls, styled there
+   together with the theme toggle so both settings share one look. */
+.lang-switch{ display:flex; align-items:center; font-size:.85rem }
 
 /* Footer */
 .site-footer{border-top:1px solid var(--border); margin-top:2rem}
 .site-footer p{margin:0; color:var(--muted)}
 /* Footer layout: one line left/right */
 .site-footer .container{ display:flex; align-items:center; justify-content:space-between; gap:.75rem; flex-wrap:wrap }
-/* Footer theme toggle position */
-.site-footer{ position: relative; }
-.site-footer .theme-toggle{ position: fixed; right: 1rem; bottom: 1rem; }
 /* Footer links */
 .footer-links ul{list-style:none; margin:0; padding:0; display:flex; gap:.75rem; flex-wrap:wrap}
 .footer-links a{ color: var(--link); text-decoration: none }
 .footer-links a:hover, .footer-links a:focus{ text-decoration: underline }
 
-/* Responsive tweaks */
-@media (max-width: 640px){
+/* Responsive tweaks
+   Der Umbruchpunkt muss mit --nav-breakpoint übereinstimmen; Media Queries
+   können die Custom Property nicht selbst auswerten. */
+@media (max-width: 48rem){
   .container{ padding: .75rem }
   .page-title{ font-size: 1.5rem }
-  .site-nav{ width:100%; margin-left:0 }
+
+  /* Bedienelemente bleiben neben dem Titel, die Navigation klappt darunter */
+  .site-controls{ order:2 }
+  /* Grössere Zielflächen für Finger (WCAG 2.5.8) */
+  .site-controls .lang-chip,
+  .site-controls .theme-toggle,
+  .site-controls .nav-toggle{ min-height:2.5rem; padding-inline:.7rem }
+  .site-nav{ order:3; width:100%; margin-left:0 }
+  .site-nav + .site-controls{ margin-left:auto }
+  .site-controls .nav-toggle{ display:inline-flex }
+  .site-controls .nav-toggle[hidden]{ display:none }
+
+  /* Panel: erst durch nav.js einklappbar, damit es ohne JS offen bleibt */
+  .site-nav.is-collapsible{ display:none }
+  .site-nav.is-collapsible.is-open{ display:block }
+  .site-nav.is-collapsible.is-open ul{
+    flex-direction:column;
+    align-items:stretch;
+    gap:0;
+    margin:.25rem 0 .25rem;
+    border-top:1px solid var(--border);
+  }
+  .site-nav.is-collapsible.is-open li{
+    display:block;
+    padding-inline:0;
+    border-inline-start:none;
+    border-bottom:1px solid var(--border);
+  }
+  .site-nav.is-collapsible.is-open a{
+    display:block;
+    /* 44px Zielgrösse gemäss WCAG 2.5.8 */
+    padding:.7rem .25rem;
+    min-height:1.5rem;
+  }
+  .site-nav.is-collapsible.is-open li:last-child{ border-bottom:none }
+  .site-nav.is-collapsible.is-open a[aria-current="page"]{ color:var(--fg); font-weight:700 }
+
+  /* Ohne JavaScript: waagrechte Liste wie bisher, nur ohne Trenner */
   .site-nav ul{ gap:.5rem }
-  /* On small screens, drop dividers for a cleaner wrap */
   .site-nav li{ padding-inline:.25rem }
   .site-nav li + li{ border-inline-start:none; margin-inline-start:0 }
+
   .site-footer .container{ flex-direction: column; align-items: flex-start; gap:.5rem }
-  .site-footer .theme-toggle{ position: static; margin-top:.25rem }
+}
+
+/* Schmale Geräte (iPhone SE, verbreitete Android-Breiten): die Beschriftung
+   des Menüknopfs bleibt nur für Screenreader stehen, das Symbol trägt die
+   Bedeutung. Ohne das rutschen die Bedienelemente in eine zweite Zeile. */
+@media (max-width: 24rem){
+  .nav-toggle-text{
+    position:absolute;
+    width:1px; height:1px;
+    margin:-1px; padding:0;
+    overflow:hidden;
+    clip:rect(0 0 0 0);
+    clip-path:inset(50%);
+    white-space:nowrap;
+  }
+  .site-header .container{ gap:.5rem }
+  .site-controls{ gap:.3rem }
+}
+
+/* Sehr schmale Geräte: engere Knöpfe, damit die Kopfzeile einzeilig bleibt.
+   36 x 40 px liegen weiterhin klar über der Mindestzielgrösse aus WCAG 2.5.8. */
+@media (max-width: 21rem){
+  .site-controls .lang-chip,
+  .site-controls .theme-toggle,
+  .site-controls .nav-toggle{ padding-inline:.5rem }
+  .site-controls .lang-switch{ padding-right:.3rem }
 }
 
 /* Accessible focus ring */

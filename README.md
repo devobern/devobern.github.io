@@ -19,7 +19,7 @@ Persönliche Website auf Basis von Jekyll (GitHub Pages kompatibel).
 - `_layouts/`: Seitenlayouts.
 - `_includes/`: Wiederverwendbare Template-Teile.
 - `_data/`: Strukturierte Inhalte (CV-Daten, UI-Übersetzungen, Navigation).
-- `assets/`: CSS, Bilder, Downloads.
+- `assets/`: CSS, JavaScript, Bilder, Downloads.
 
 ## Mehrsprachigkeit (DE/EN)
 
@@ -83,6 +83,24 @@ Bereits veröffentlichte englische URLs bleiben über kleine Weiterleitungsseite
 erreichbar (`_pages/*-legacy.md`, Front Matter `redirect:`). Bei Giscus sorgt
 `giscus_term:` dafür, dass bestehende Kommentar-Threads erhalten bleiben, auch
 wenn sich die URL ändert.
+
+## Kopfzeile und Navigation
+
+Ab dem Umbruchpunkt `--nav-breakpoint` (siehe `assets/css/style.css`, aktuell
+48rem) klappt die Hauptnavigation in ein Hamburger-Menü. `assets/js/nav.js`
+liest denselben Wert aus, damit CSS und JavaScript nicht auseinanderlaufen.
+
+Das Menü ist Progressive Enhancement: der Knopf trägt im HTML `hidden` und
+wird erst von `nav.js` aktiviert. Ohne JavaScript bleibt die Navigation eine
+gewöhnliche, sichtbare Liste. Das Panel schliesst per Escape, per Klick
+ausserhalb und beim Wechsel auf Desktop-Breite; der Fokus wandert beim Öffnen
+in die Liste und beim Schliessen zurück auf den Knopf.
+
+Sprachumschalter und Theme-Umschalter liegen zusammen in `.site-controls`
+rechts in der Kopfzeile, damit beide Einstellungen an einem Ort stehen.
+Wird ein Navigationspunkt ergänzt, ist zu prüfen, ob die Kopfzeile in der
+längeren Sprache (Deutsch) noch einzeilig bleibt; sonst muss
+`--nav-breakpoint` steigen.
 
 ## Voraussetzungen
 
