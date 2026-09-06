@@ -14,6 +14,9 @@ Abhängigkeiten:
   oder: nix-shell -p python3 python3Packages.pillow
 - PyYAML: pip install pyyaml
   oder: nix-shell -p python3 python3Packages.pillow python3Packages.pyyaml
+- pillow-heif (optional, nur für HEIC/HEIF vom iPhone):
+  pip install pillow-heif
+  oder: nix-shell -p python3 python3Packages.pillow python3Packages.pillow-heif
 
 Verwendung:
     python scripts/build-gallery.py
@@ -43,6 +46,15 @@ except ImportError:
     print("Oder mit Nix: nix-shell -p python3 python3Packages.pillow")
     sys.exit(1)
 
+# HEIC/HEIF (iPhone-Standardformat) nur, wenn pillow-heif vorhanden ist
+try:
+    import pillow_heif
+
+    pillow_heif.register_heif_opener()
+    HEIF_SUPPORT = True
+except ImportError:
+    HEIF_SUPPORT = False
+
 # Konfiguration
 PHOTOS_DIR = Path("photos")
 THUMBS_DIR = Path("assets/gallery/thumbs")
@@ -56,6 +68,30 @@ THUMB_QUALITY = 80
 FULL_QUALITY = 85
 
 SUPPORTED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
+HEIF_EXTENSIONS = {".heic", ".heif"}
+
+# Herstellernamen, wie sie im EXIF stehen, in eine lesbare Schreibweise bringen.
+# Schlüssel immer kleingeschrieben.
+MAKE_NAMES = {
+    "apple": "Apple",
+    "canon": "Canon",
+    "fujifilm": "FUJIFILM",
+    "google": "Google",
+    "huawei": "Huawei",
+    "nikon corporation": "Nikon",
+    "olympus corporation": "Olympus",
+    "olympus imaging corp.": "Olympus",
+    "oneplus": "OnePlus",
+    "panasonic": "Panasonic",
+    "samsung": "Samsung",
+    "sony": "Sony",
+    "xiaomi": "Xiaomi",
+}
+
+# Smartphones schreiben oft nur den internen Modellcode ins EXIF
+# (z. B. "SM-S928B"). Hier lässt sich ein Anzeigename hinterlegen:
+#     "SM-S928B": "Samsung Galaxy S24 Ultra",
+CAMERA_NAMES = {}
 
 # Wasserzeichen-Konfiguration
 WATERMARK_AUTHOR = "Nicolin Dora"
@@ -70,6 +106,51 @@ def sanitize_filename(name: str) -> str:
     Jekyll ignoriert Dateien, die mit _ beginnen.
     """
     return name.lstrip("_")
+
+
+def format_camera_name(make: str, model: str) -> str:
+    """
+    Baut einen lesbaren Kameranamen aus Hersteller und Modell.
+    Smartphones schreiben den Hersteller oft klein ("samsung") und das
+    Modell als Code; beides lässt sich über MAKE_NAMES/CAMERA_NAMES glätten.
+    """
+    model = CAMERA_NAMES.get(model, model)
+    make = MAKE_NAMES.get(make.lower(), make)
+
+    if not make:
+        return model
+    if not model:
+        return make
+    # Vermeidet Duplikate wie "Canon Canon EOS R5" oder "Apple Apple iPhone"
+    if model.lower().startswith(make.lower()):
+        return model
+    return f"{make} {model}"
+
+
+def clean_lens_name(lens: str, camera: str) -> str:
+    """
+    Räumt Objektivnamen von Smartphones auf.
+
+    Diese wiederholen den Kameranamen und hängen die physikalischen Daten an,
+    z. B. "iPhone 15 Pro back triple camera 6.765mm f/1.78". Beides steht
+    ohnehin schon in der Specs-Zeile, deshalb bleibt nur "Back Triple Camera".
+    Objektivnamen von Systemkameras ("XF23mmF2 R WR") bleiben unverändert.
+    """
+    # Angehängte Brennweite/Blende entfernen
+    lens = re.sub(r"\s*\d+(\.\d+)?\s*mm\s*f/?\d+(\.\d+)?\s*$", "", lens, flags=re.IGNORECASE)
+    # Vorangestellten Kameranamen entfernen (Modell und Modell ohne Hersteller),
+    # längster Treffer zuerst
+    prefixes = sorted({camera, camera.split(" ", 1)[-1]} - {""}, key=len, reverse=True)
+    for prefix in prefixes:
+        if lens.lower().startswith(prefix.lower()):
+            lens = lens[len(prefix):]
+            break
+    lens = " ".join(lens.split())
+    # Rein kleingeschriebene Beschreibungen ("back triple camera") aufwerten,
+    # Produktnamen mit Grossbuchstaben aber unangetastet lassen
+    if lens and not any(c.isupper() for c in lens):
+        lens = lens.title()
+    return lens
 
 
 def format_lens_name(lens: str) -> str:
@@ -159,37 +240,57 @@ def add_watermark(image: Image.Image, year: int) -> Image.Image:
     return watermarked.convert("RGB")
 
 
+def read_exif(image: Image.Image) -> dict:
+    """
+    Liest die EXIF-Tags eines Bildes als {Tagname: Wert}.
+
+    Nutzt bewusst die öffentliche getexif()-API statt des privaten
+    _getexif(): HEIC/HEIF-Dateien (iPhone) kennen _getexif() nicht.
+    Aufnahmedaten wie Blende oder Brennweite stehen in der Exif-Unter-IFD
+    und werden hier mit der Haupt-IFD zusammengeführt.
+    """
+    try:
+        exif = image.getexif()
+    except Exception:
+        return {}
+
+    if not exif:
+        return {}
+
+    tags = {TAGS.get(tag_id, tag_id): value for tag_id, value in exif.items()}
+
+    try:
+        # 0x8769 = ExifOffset, die Unter-IFD mit den Aufnahmeparametern
+        for tag_id, value in exif.get_ifd(0x8769).items():
+            tags[TAGS.get(tag_id, tag_id)] = value
+    except Exception:
+        pass
+
+    return tags
+
+
 def get_exif_data(image: Image.Image) -> dict:
     """Extrahiert relevante EXIF-Daten aus einem Bild."""
     exif_data = {}
 
     try:
-        exif = image._getexif()
-        if not exif:
+        exif_readable = read_exif(image)
+        if not exif_readable:
             return exif_data
 
-        # EXIF-Tags in lesbare Namen umwandeln
-        exif_readable = {}
-        for tag_id, value in exif.items():
-            tag = TAGS.get(tag_id, tag_id)
-            exif_readable[tag] = value
-
         # Kamera
-        make = exif_readable.get("Make", "").strip()
-        model = exif_readable.get("Model", "").strip()
-        if make and model:
-            # Vermeidet Duplikate wie "Canon Canon EOS R5"
-            if model.startswith(make):
-                exif_data["camera"] = model
-            else:
-                exif_data["camera"] = f"{make} {model}"
-        elif model:
-            exif_data["camera"] = model
+        make = str(exif_readable.get("Make", "")).strip()
+        model = str(exif_readable.get("Model", "")).strip()
+        camera = format_camera_name(make, model)
+        if camera:
+            exif_data["camera"] = camera
 
         # Objektiv
         lens = exif_readable.get("LensModel", "")
         if lens:
-            exif_data["lens"] = format_lens_name(str(lens).strip())
+            lens = clean_lens_name(str(lens).strip(), camera)
+            if lens:
+                exif_data["lens"] = format_lens_name(lens)
 
         # Datum
         date_str = exif_readable.get("DateTimeOriginal") or exif_readable.get("DateTime")
@@ -228,14 +329,20 @@ def get_exif_data(image: Image.Image) -> dict:
             except (TypeError, ZeroDivisionError):
                 pass
 
-        # ISO
-        iso = exif_readable.get("ISOSpeedRatings")
+        # ISO (je nach EXIF-Version unter verschiedenen Namen)
+        iso = (
+            exif_readable.get("ISOSpeedRatings")
+            or exif_readable.get("PhotographicSensitivity")
+            or exif_readable.get("RecommendedExposureIndex")
+        )
         if iso:
             if isinstance(iso, tuple):
                 iso = iso[0]
             exif_data["iso"] = f"ISO {iso}"
 
-        # Brennweite
+        # Brennweite. Smartphone-Objektive sind physikalisch sehr kurz
+        # (z. B. 6.8mm), deshalb wird das Kleinbild-Äquivalent ergänzt,
+        # sobald es im EXIF steht und nennenswert abweicht.
         focal = exif_readable.get("FocalLength")
         if focal:
             try:
@@ -243,8 +350,18 @@ def get_exif_data(image: Image.Image) -> dict:
                     mm = focal.numerator / focal.denominator
                 else:
                     mm = float(focal)
-                exif_data["focal_length"] = f"{int(mm)}mm"
-            except (TypeError, ZeroDivisionError):
+                display = f"{mm:.1f}mm".replace(".0mm", "mm")
+
+                equivalent = exif_readable.get("FocalLengthIn35mmFilm")
+                if equivalent:
+                    if hasattr(equivalent, "numerator"):
+                        equivalent = equivalent.numerator / equivalent.denominator
+                    equivalent = float(equivalent)
+                    if equivalent > 0 and abs(equivalent - mm) >= 1:
+                        display = f"{display} (≙ {equivalent:.0f}mm)"
+
+                exif_data["focal_length"] = display
+            except (TypeError, ValueError, ZeroDivisionError):
                 pass
 
     except Exception as e:
@@ -256,17 +373,35 @@ def get_exif_data(image: Image.Image) -> dict:
 def get_image_date(image: Image.Image, filepath: Path) -> datetime:
     """Ermittelt das Aufnahmedatum für die Sortierung."""
     try:
-        exif = image._getexif()
-        if exif:
-            exif_readable = {TAGS.get(k, k): v for k, v in exif.items()}
-            date_str = exif_readable.get("DateTimeOriginal") or exif_readable.get("DateTime")
-            if date_str:
-                return datetime.strptime(str(date_str), "%Y:%m:%d %H:%M:%S")
+        exif_readable = read_exif(image)
+        date_str = exif_readable.get("DateTimeOriginal") or exif_readable.get("DateTime")
+        if date_str:
+            return datetime.strptime(str(date_str), "%Y:%m:%d %H:%M:%S")
     except Exception:
         pass
 
     # Fallback: Datei-Änderungszeit
     return datetime.fromtimestamp(filepath.stat().st_mtime)
+
+
+def warn_missing_exif(source: Path, exif: dict) -> None:
+    """
+    Weist darauf hin, wenn ein Bild ohne EXIF ankommt.
+
+    Typisch für Fotos, die über Messenger oder soziale Netzwerke geschickt
+    wurden: dort werden die Metadaten beim Upload entfernt. Ohne EXIF fehlen
+    die Kameradaten in der Galerie, und das Jahr im Wasserzeichen stammt dann
+    aus dem Datei-Änderungsdatum statt aus dem Aufnahmedatum.
+    """
+    if exif:
+        if "date" not in exif:
+            print(f"    Hinweis: kein Aufnahmedatum in {source.name}, "
+                  f"Wasserzeichen nutzt das Datei-Datum")
+        return
+
+    print(f"    Hinweis: keine EXIF-Daten in {source.name} - keine Kameradaten "
+          f"in der Galerie, Wasserzeichen nutzt das Datei-Datum")
+    print("    (Original direkt vom Gerät kopieren, nicht über Messenger senden)")
 
 
 def needs_processing(source: Path, target: Path) -> bool:
@@ -297,6 +432,7 @@ def process_image(source: Path) -> dict | None:
             with Image.open(source) as img:
                 img_date = get_image_date(img, source)
                 exif = get_exif_data(img)
+                warn_missing_exif(source, exif)
                 return {
                     "filename": safe_stem,
                     "thumb": f"/assets/gallery/thumbs/{safe_stem}.webp",
@@ -331,6 +467,7 @@ def process_image(source: Path) -> dict | None:
             exif_data = get_exif_data(original_img)
             img_date = get_image_date(original_img, source)
             original_img.close()
+            warn_missing_exif(source, exif_data)
 
             # Thumbnail erstellen
             if needs_thumb:
@@ -481,17 +618,37 @@ def main():
     FULL_DIR.mkdir(parents=True, exist_ok=True)
 
     # Bilder finden
+    extensions = set(SUPPORTED_EXTENSIONS)
+    if HEIF_SUPPORT:
+        extensions |= HEIF_EXTENSIONS
+
     images = []
-    for ext in SUPPORTED_EXTENSIONS:
+    for ext in extensions:
         images.extend(PHOTOS_DIR.glob(f"*{ext}"))
         images.extend(PHOTOS_DIR.glob(f"*{ext.upper()}"))
 
     # Duplikate entfernen (falls .jpg und .JPG)
     images = list(set(images))
 
+    # HEIC/HEIF vom iPhone nicht stillschweigend übergehen
+    if not HEIF_SUPPORT:
+        skipped_heif = [
+            path for path in PHOTOS_DIR.iterdir()
+            if path.suffix.lower() in HEIF_EXTENSIONS
+        ]
+        if skipped_heif:
+            print(f"Warnung: {len(skipped_heif)} HEIC/HEIF-Datei(en) übersprungen "
+                  f"(z. B. {skipped_heif[0].name}).")
+            print("Für iPhone-Fotos in HEIC wird pillow-heif benötigt:")
+            print("  pip install pillow-heif")
+            print("  oder: nix-shell -p python3 python3Packages.pillow "
+                  "python3Packages.pillow-heif")
+            print("Alternative: am iPhone unter Einstellungen > Kamera > Formate")
+            print("'Maximale Kompatibilität' wählen, dann wird JPEG aufgenommen.\n")
+
     if not images:
         print(f"Keine Bilder in '{PHOTOS_DIR}' gefunden.")
-        print(f"Unterstützte Formate: {', '.join(SUPPORTED_EXTENSIONS)}")
+        print(f"Unterstützte Formate: {', '.join(sorted(extensions))}")
         # Leere gallery.json erstellen
         JSON_PATH.write_text("[]")
         sys.exit(0)

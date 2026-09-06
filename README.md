@@ -154,12 +154,13 @@ Die Galerie zeigt Fotos unter `/gallery/`. Bilder werden als WebP komprimiert un
 - Python 3.8+
 - Pillow
 - PyYAML
+- pillow-heif (optional, nur für HEIC/HEIF vom iPhone)
 
 Installation:
 ```bash
-pip install Pillow pyyaml
+pip install Pillow pyyaml pillow-heif
 # oder mit Nix:
-nix-shell -p python3 python3Packages.pillow python3Packages.pyyaml
+nix-shell -p python3 python3Packages.pillow python3Packages.pyyaml python3Packages.pillow-heif
 ```
 
 ### Workflow: Neue Fotos hinzufügen
@@ -207,6 +208,42 @@ Um ein Bild zu kategorisieren, verschiebe es von der "unkategorisiert"-Kategorie
 in die gewünschte Kategorie und passe den Alt-Text an.
 
 **Hinweis:** Die Originale in `photos/` werden nicht committed (siehe `.gitignore`).
+
+### Fotos vom Smartphone
+
+Smartphone-Fotos laufen durch denselben Weg wie Fotos aus der Systemkamera:
+ins `photos/`-Verzeichnis legen, `build-gallery.py` ausführen. Wasserzeichen
+(`© <Aufnahmejahr> Nicolin Dora`) und Specs-Zeile entstehen automatisch, sofern
+die EXIF-Daten im Original noch vorhanden sind.
+
+**Übertragung, die EXIF erhält:** USB-Kabel, AirDrop, SD-Karte, Nextcloud/Syncthing,
+Google Fotos (Download des Originals), iCloud Fotos. Bei iOS beim Teilen unter
+"Optionen" *Alle Fotodaten* aktiviert lassen.
+
+**Übertragung, die EXIF entfernt:** WhatsApp, Signal, Telegram (als "Bild" statt
+"Datei"), Instagram, die meisten Web-Uploads. Danach fehlen Kameradaten
+vollständig, und das Wasserzeichen nutzt das Datei-Datum statt des
+Aufnahmedatums. Das Script weist beim Build darauf hin.
+
+**HEIC vom iPhone:** wird nur mit installiertem `pillow-heif` verarbeitet, sonst
+meldet das Script die übersprungenen Dateien. Alternativ am iPhone unter
+*Einstellungen → Kamera → Formate* auf *Maximale Kompatibilität* stellen, dann
+nimmt das Gerät JPEG auf.
+
+**Kameraname:** Viele Android-Geräte schreiben nur den Modellcode ins EXIF
+(z. B. `SM-S928B`). Für einen lesbaren Namen einen Eintrag in `CAMERA_NAMES`
+in `scripts/build-gallery.py` ergänzen:
+
+```python
+CAMERA_NAMES = {
+    "SM-S928B": "Samsung Galaxy S24 Ultra",
+}
+```
+
+**Brennweite:** Handy-Objektive sind physikalisch sehr kurz. Steht das
+Kleinbild-Äquivalent im EXIF, wird es ergänzt: `6.8mm (≙ 24mm)`. Das gilt auch
+für die APS-C-Aufnahmen (`23mm (≙ 35mm)`); die Angaben aktualisieren sich beim
+nächsten Build-Lauf.
 
 ## CI
 
