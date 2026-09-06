@@ -1,0 +1,8 @@
+# Sprachunabhängige Links zu den Projekten aus _data/cv/<lang>.json.
+# Die Zuordnung erfolgt über die stabile `id` des jeweiligen CV-Eintrags.
+links:
+  - id: "qckqmd3e1ukh0j37b8xwprwb"
+    repo: "https://github.com/devobern/BFH-Bachelorarbeit-Proof-of-Concept"
+    pdf: "/assets/files/Digital_und_sicher_Neue_Wege_für_die_Schulkommunikation.pdf"
+  - id: "cybua9150c1wz1aknluv8hi9"
+    repo: "https://github.com/devobern/URL-Archiver"
