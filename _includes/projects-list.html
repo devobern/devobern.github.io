@@ -1,0 +1,26 @@
+{%- include i18n.html -%}
+{%- comment -%}
+  Projektliste aus den CV-Daten der aktiven Sprache. Die Links liegen
+  sprachunabhängig in _data/projects.yml und werden über die stabile
+  CV-Item-`id` zugeordnet.
+{%- endcomment -%}
+{%- assign cv = site.data.cv[page_lang] -%}
+{%- unless cv -%}{%- assign cv = site.data.cv[site.default_lang] -%}{%- endunless -%}
+{%- for project in cv.sections.projects.items -%}
+  {%- unless project.visible == false -%}
+  {%- assign matches = site.data.projects.links | where: 'id', project.id -%}
+  {%- assign meta = matches[0] %}
+<section class="project">
+  <h2>{{ project.name }}</h2>
+  <p class="project-meta">{{ project.description }} · {{ project.date }}</p>
+  <div class="project-summary">{{ project.summary }}</div>
+  {%- if meta %}
+  <p class="project-links">
+    {%- if meta.repo %}<a href="{{ meta.repo }}" target="_blank" rel="noopener noreferrer">{{ t.project_repo }}</a>{% endif -%}
+    {%- if meta.repo and meta.pdf %} · {% endif -%}
+    {%- if meta.pdf %}<a href="{{ meta.pdf | relative_url }}" download>{{ t.project_pdf }}</a>{% endif %}
+  </p>
+  {%- endif %}
+</section>
+  {%- endunless -%}
+{%- endfor -%}
