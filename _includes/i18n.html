@@ -1,0 +1,13 @@
+{%- comment -%}
+  Bestimmt die aktive Sprache und stellt die Übersetzungstabelle bereit.
+  Setzt (im aufrufenden Scope): page_lang, t
+  Fällt bei unbekanntem page.lang auf site.default_lang zurück, damit eine
+  fehlerhafte Front-Matter-Angabe nie zu einer halb gerenderten Seite führt.
+{%- endcomment -%}
+{%- assign default_lang = site.default_lang | default: 'de' -%}
+{%- assign page_lang = page.lang | default: default_lang -%}
+{%- assign t = site.data.i18n[page_lang] -%}
+{%- unless t -%}
+  {%- assign page_lang = default_lang -%}
+  {%- assign t = site.data.i18n[page_lang] -%}
+{%- endunless -%}

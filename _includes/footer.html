@@ -1,15 +1,22 @@
 <footer class="site-footer" role="contentinfo">
   <div class="container">
     <p>© {{ site.time | date: '%Y' }} {{ site.author.name | default: site.title }}</p>
-    <nav class="footer-links" aria-label="Soziale Links">
+    <nav class="footer-links" aria-label="{{ t.social_aria }}">
       <ul>
-        {% for l in site.author.links %}
-          {% if l.label == 'GitHub' or l.label == 'LinkedIn' %}
-            <li><a href="{{ l.url }}" target="_blank" rel="me noopener">{{ l.label }}</a></li>
-          {% endif %}
-        {% endfor %}
+        {%- for l in site.author.links %}
+          {%- if l.label == 'GitHub' or l.label == 'LinkedIn' %}
+          <li><a href="{{ l.url }}" target="_blank" rel="me noopener noreferrer">{{ l.label }}</a></li>
+          {%- endif -%}
+        {%- endfor %}
+        {%- for item in site.data.navigation.footer %}
+          {%- assign item_url = item.url[page_lang] -%}
+          {%- if item_url %}
+          <li><a href="{{ item_url | relative_url }}">{{ item.title[page_lang] | default: item.title[site.default_lang] }}</a></li>
+          {%- endif -%}
+        {%- endfor %}
+        <li><a href="{{ '/.well-known/security.txt' | relative_url }}">security.txt</a></li>
       </ul>
     </nav>
   </div>
-  <button class="theme-toggle" id="theme-toggle" aria-label="Theme umschalten" title="Theme umschalten" type="button">🌓</button>
+  <button class="theme-toggle" id="theme-toggle" aria-label="{{ t.theme_toggle }}" title="{{ t.theme_toggle }}" type="button">🌓</button>
 </footer>
