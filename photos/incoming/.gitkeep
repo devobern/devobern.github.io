@@ -1,0 +1,7 @@
+# Upload-Ordner für Fotos vom Smartphone.
+#
+# Bilder hier über die GitHub-Weboberfläche ablegen (Add file > Upload files).
+# .github/workflows/gallery.yml verarbeitet sie, committet Thumbnails,
+# Wasserzeichen-Vollbilder und Metadaten und leert diesen Ordner wieder.
+#
+# Für den Weg über den Rechner weiterhin photos/ verwenden.
