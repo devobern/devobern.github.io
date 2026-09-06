@@ -1,7 +1,10 @@
 ---
 layout: default
 ---
-{% assign cv = site.data.cv %}
+{%- include i18n.html -%}
+{%- assign cv = site.data.cv[page_lang] -%}
+{%- unless cv -%}{%- assign cv = site.data.cv[site.default_lang] -%}{%- endunless -%}
+
 <section class="cv">
   <header class="cv-header">
     <div>

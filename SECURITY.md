@@ -1,4 +1,8 @@
-# Security Policy
+---
+title: Security Policy
+lang: en
+permalink: /SECURITY/
+---
 
 This site is built with Jekyll and deployed via GitHub Pages. The goal is to keep the attack surface minimal and the content trustworthy.
 
@@ -21,7 +25,9 @@ This is a static site. We support the state of `main`. Historical builds are not
   - GitHub Actions CI builds the site and runs HTMLProofer checks (broken links, HTTPS enforcement, missing anchors).
   - CodeQL enabled for Ruby/JS code.
 - Content Security & Privacy:
-  - CSP via `<meta http-equiv>` with tight defaults. We only allow minimal external origins (GoatCounter analytics). Inline scripts are avoided; redirects use `<meta http-equiv="refresh">`.
+  - CSP via `<meta http-equiv>` with tight defaults. We only allow minimal external origins (GoatCounter analytics, Giscus comments). Inline scripts and inline styles are avoided entirely, so `script-src`/`style-src` stay at `'self'` without `'unsafe-inline'`; redirects use `<meta http-equiv="refresh">`.
+  - Third-party scripts are pinned: GoatCounter is loaded with Subresource Integrity. Giscus (`client.js`) is intentionally not pinned because upstream ships a mutable URL; it is confined by CSP to `giscus.app` and rendered inside an iframe.
+  - Caveat: `Strict-Transport-Security` and `X-Content-Type-Options` are HTTP-header-only controls. The `<meta http-equiv>` variants in `_includes/head.html` document the intent but are ignored by browsers. HSTS is delivered by GitHub Pages when "Enforce HTTPS" is on; `nosniff` needs the proxy described under "Going further".
   - External links use `rel="noopener"` (and `noreferrer` where appropriate) in templates.
   - Referrer policy: `strict-origin-when-cross-origin`.
   - Analytics: GoatCounter, production only, no cookies; respects DNT.
@@ -35,6 +41,7 @@ This is a static site. We support the state of `main`. Historical builds are not
 - Enforce HTTPS in the repository settings (GitHub Pages -> Enforce HTTPS).
 - Enable branch protection on `main`: require PR review, passing CI, and up‑to‑date with base.
 - Secrets: Secret scanning (GitHub Advanced Security) should be enabled; avoid secrets in this repo.
+- Workflows run with `permissions: contents: read`; do not widen this without a reason stated in the PR.
 
 ## Going further (optional)
 

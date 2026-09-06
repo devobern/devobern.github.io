@@ -1,0 +1,101 @@
+# Zentrale UI-Übersetzungen. Neue Sprache = neuer Top-Level-Key + Eintrag in
+# site.languages (_config.yml) und _data/navigation.yml.
+de:
+  code: de
+  html_lang: de-CH
+  hreflang: de
+  og_locale: de_CH
+  name: Deutsch
+  name_short: DE
+  home: /
+  site_description: "Security Analyst • Student • Maker"
+
+  skip_to_content: "Zum Inhalt springen"
+  nav_aria: "Hauptnavigation"
+  lang_switch_aria: "Sprache wechseln"
+  lang_switch_label: "Sprache"
+  social_aria: "Soziale Links"
+  theme_toggle: "Theme umschalten"
+  banner: "🚧 Diese Seite ist noch im Aufbau. Inhalte werden laufend ergänzt."
+
+  blog_empty: "Keine Beiträge vorhanden."
+  blog_feed: "Feed für deutschsprachige Beiträge abonnieren"
+  blog_only_in: "Nur auf %LANG% verfügbar"
+  published_on: "Veröffentlicht am"
+  date_format: "%d.%m.%Y"
+
+  comments_title: "Kommentare"
+  comments_intro_before: "Kommentare werden über"
+  comments_intro_after: "eingebunden. Du brauchst dafür ein GitHub-Konto."
+  comments_fallback_before: "Möchtest du kein GitHub verwenden? Du kannst mir auch direkt per"
+  comments_fallback_link: "E-Mail"
+  comments_fallback_after: "Feedback schicken."
+  comments_subject: "Feedback zu"
+  giscus_lang: de
+
+  gallery_all: "Alle"
+  gallery_filter_aria: "Fotos nach Kategorie filtern"
+  lightbox_aria: "Bildansicht"
+  lightbox_close: "Schliessen"
+  lightbox_prev: "Vorheriges Bild"
+  lightbox_next: "Nächstes Bild"
+  lightbox_loading: "Laden…"
+
+  project_repo: "GitHub-Repository"
+  project_pdf: "PDF herunterladen"
+
+  privacy: "Datenschutz"
+  security: "Sicherheit"
+  not_found_title: "Seite nicht gefunden"
+  not_found_text: "Diese Seite existiert nicht (mehr). Vielleicht hilft die Startseite weiter."
+  not_found_home: "Zur Startseite"
+
+en:
+  code: en
+  html_lang: en
+  hreflang: en
+  og_locale: en_GB
+  name: English
+  name_short: EN
+  home: /en/
+  site_description: "Security analyst • Student • Maker"
+
+  skip_to_content: "Skip to content"
+  nav_aria: "Main navigation"
+  lang_switch_aria: "Switch language"
+  lang_switch_label: "Language"
+  social_aria: "Social links"
+  theme_toggle: "Toggle theme"
+  banner: "🚧 This site is still under construction. Content is being added continuously."
+
+  blog_empty: "No posts yet."
+  blog_feed: "Subscribe to the feed of English posts"
+  blog_only_in: "Only available in %LANG%"
+  published_on: "Published on"
+  date_format: "%Y-%m-%d"
+
+  comments_title: "Comments"
+  comments_intro_before: "Comments are powered by"
+  comments_intro_after: ". You need a GitHub account to comment."
+  comments_fallback_before: "Don't want to use GitHub? You can also send me feedback directly via"
+  comments_fallback_link: "email"
+  comments_fallback_after: "."
+  comments_subject: "Feedback on"
+  giscus_lang: en
+
+  gallery_all: "All"
+  gallery_filter_aria: "Filter photos by category"
+  lightbox_aria: "Image view"
+  lightbox_close: "Close"
+  lightbox_prev: "Previous image"
+  lightbox_next: "Next image"
+  lightbox_loading: "Loading…"
+
+  project_repo: "GitHub repository"
+  project_pdf: "Download PDF"
+
+  privacy: "Privacy"
+  security: "Security"
+  not_found_title: "Page not found"
+  not_found_text: "This page does not exist (any more). The home page may help."
+  not_found_home: "Go to home page"

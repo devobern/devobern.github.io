@@ -1,0 +1,22 @@
+---
+permalink: /404.html
+layout: default
+title: 404
+lang: de
+sitemap: false
+---
+{%- comment -%}
+  GitHub Pages liefert /404.html für alle unbekannten Pfade aus, also auch
+  unterhalb von /en/. Da die Sprache serverseitig nicht bekannt ist, werden
+  beide Sprachen angezeigt.
+{%- endcomment -%}
+<article class="page">
+  {%- for l in site.languages -%}
+    {%- assign li = site.data.i18n[l] %}
+  <section lang="{{ li.html_lang }}">
+    <h1>{{ li.not_found_title }}</h1>
+    <p>{{ li.not_found_text }}</p>
+    <p><a href="{{ li.home | relative_url }}">{{ li.not_found_home }}</a></p>
+  </section>
+  {%- endfor %}
+</article>
