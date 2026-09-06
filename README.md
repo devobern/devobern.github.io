@@ -8,7 +8,8 @@ Persönliche Website auf Basis von Jekyll (GitHub Pages kompatibel).
 - GitHub Pages Gems (`github-pages`)
 - Liquid Templates (`_layouts`, `_includes`)
 - Markdown Seiten und Posts (`_pages`, `_posts`)
-- Zentrale CV-Datenquelle in JSON (`_data/cv.json`)
+- Zentrale CV-Datenquelle in JSON (`_data/cv/<lang>.json`)
+- Mehrsprachigkeit (DE/EN) ohne Zusatz-Plugin, GitHub-Pages-kompatibel
 
 ## Projektstruktur
 
@@ -17,8 +18,71 @@ Persönliche Website auf Basis von Jekyll (GitHub Pages kompatibel).
 - `_posts/`: Blogposts.
 - `_layouts/`: Seitenlayouts.
 - `_includes/`: Wiederverwendbare Template-Teile.
-- `_data/`: Strukturierte Inhalte (u. a. CV-Daten).
+- `_data/`: Strukturierte Inhalte (CV-Daten, UI-Übersetzungen, Navigation).
 - `assets/`: CSS, Bilder, Downloads.
+
+## Mehrsprachigkeit (DE/EN)
+
+Die Website ist zweisprachig. Deutsch liegt auf den bestehenden Root-URLs,
+Englisch unter `/en/`. Es wird kein zusätzliches Plugin verwendet, damit der
+Build GitHub-Pages-kompatibel bleibt.
+
+### Wie es funktioniert
+
+| Baustein | Zweck |
+| --- | --- |
+| `_config.yml` (`default_lang`, `languages`) | Registrierte Sprachen; `default_lang` liegt auf `/` |
+| `_data/i18n.yml` | Alle UI-Texte pro Sprache |
+| `_data/navigation.yml` | Navigationstitel und -URLs pro Sprache |
+| `_includes/i18n.html` | Setzt `page_lang` und `t` (Übersetzungstabelle) |
+| `_includes/lang-alternates.html` | Sprachumschalter (`mode="nav"`) und `hreflang`-Links (`mode="head"`) |
+| Front Matter `lang:` / `ref:` | `lang` = Sprache der Seite, `ref` = sprachübergreifende ID |
+
+Zwei Seiten gelten als Übersetzungen voneinander, wenn sie dasselbe `ref`
+tragen. Daraus entstehen automatisch der Sprachumschalter im Header, die
+`hreflang`-Angaben im `<head>` und die Gruppierung im Blog-Index.
+
+### Neue Seite anlegen
+
+```markdown
+---
+permalink: /neue-seite/
+title: Neue Seite
+lang: de
+ref: neue-seite
+---
+```
+
+```markdown
+---
+permalink: /en/new-page/
+title: New page
+lang: en
+ref: neue-seite
+---
+```
+
+Existiert eine Seite nur in einer Sprache, verlinkt der Umschalter auf die
+Startseite der anderen Sprache; im Blog-Index wird der Beitrag mit einem
+Sprach-Badge gekennzeichnet.
+
+### Neuen Text im Template übersetzen
+
+Keine Zeichenketten direkt ins Template schreiben. Stattdessen einen Key in
+`_data/i18n.yml` für **alle** Sprachen ergänzen und im Template `{{ t.key }}`
+verwenden. Für JavaScript werden die Texte als `data-*`-Attribute übergeben
+(siehe `_includes/gallery.html`), weil die CSP keine Inline-Skripte erlaubt.
+
+### URLs, die nicht gebrochen werden dürfen
+
+Feeds: `/feed.de.xml` und `/feed.en.xml` enthalten nur die Beiträge der jeweiligen
+Sprache und werden im `<head>` passend verlinkt. Der kombinierte Feed von
+jekyll-feed bleibt für bestehende Abos unter `/feed.xml` erreichbar.
+
+Bereits veröffentlichte englische URLs bleiben über kleine Weiterleitungsseiten
+erreichbar (`_pages/*-legacy.md`, Front Matter `redirect:`). Bei Giscus sorgt
+`giscus_term:` dafür, dass bestehende Kommentar-Threads erhalten bleiben, auch
+wenn sich die URL ändert.
 
 ## Voraussetzungen
 
@@ -55,9 +119,11 @@ nix-shell -p ruby bundler --run 'bundle install && bundle exec htmlproofer ./_si
 
 ## Inhaltspflege
 
-- CV-Inhalte: `_data/cv.json`
-- CV-Seite: `_pages/cv.md` + `_layouts/cv.html`
-- About-Seite: `_pages/about.md`
+- CV-Inhalte: `_data/cv/de.json` und `_data/cv/en.json` (gleiche Struktur, gleiche `id`s)
+- CV-Seite: `_pages/cv.md` / `_pages/cv-en.md` + `_layouts/cv.html`
+- About-Seite: `_pages/about.md` / `_pages/about-en.md`
+- Projekt-Links: `_data/projects.yml` (verknüpft über die CV-Item-`id`)
+- UI-Texte: `_data/i18n.yml`
 - Navigation: `_data/navigation.yml`
 - Styling: `assets/css/style.css`
 
@@ -128,4 +194,10 @@ in die gewünschte Kategorie und passe den Alt-Text an.
 
 Bei Pushes und Pull Requests auf `main` läuft ein Build inkl. HTMLProofer:
 
-- `.github/workflows/ci.yml`
+- `.github/workflows/ci.yml` (läuft mit `permissions: contents: read`)
+- `.github/workflows/codeql.yml`
+
+## Sicherheit
+
+Siehe [SECURITY.md](SECURITY.md) für Meldewege, die CSP und die bewusst
+getroffenen Härtungsmassnahmen.
