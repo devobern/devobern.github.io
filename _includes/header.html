@@ -2,9 +2,15 @@
 <header class="site-header" role="banner">
   <div class="container">
     <a class="site-title" href="{{ t.home | relative_url }}">{{ site.title }}</a>
+
+    {%- comment -%}
+      Reihenfolge im DOM: Titel, Navigation, Bedienelemente. Auf schmalen
+      Viewports schiebt CSS die Navigation per `order` unter die Kopfzeile,
+      wo sie zum Hamburger-Panel wird.
+    {%- endcomment -%}
     {%- assign nav = site.data.navigation.main -%}
     {%- if nav %}
-    <nav class="site-nav" role="navigation" aria-label="{{ t.nav_aria }}">
+    <nav class="site-nav" id="site-nav" role="navigation" aria-label="{{ t.nav_aria }}">
       <ul>
         {%- for item in nav %}
         {%- assign item_url = item.url[page_lang] -%}
@@ -15,6 +21,31 @@
       </ul>
     </nav>
     {%- endif %}
-    {%- include lang-alternates.html mode="nav" -%}
+
+    <div class="site-controls">
+      {%- include lang-alternates.html mode="nav" -%}
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="{{ t.theme_toggle }}" title="{{ t.theme_toggle }}">
+        <span class="theme-toggle-icon" aria-hidden="true">🌓</span>
+      </button>
+      {%- comment -%}
+        `hidden` bis assets/js/nav.js den Knopf aktiviert: ohne JavaScript
+        bleibt die Navigation als normale Liste sichtbar und bedienbar.
+      {%- endcomment -%}
+      <button class="nav-toggle" id="nav-toggle" type="button" hidden
+              aria-expanded="false" aria-controls="site-nav" aria-label="{{ t.menu }}">
+        <svg class="nav-toggle-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+          <g class="nav-toggle-bars" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </g>
+          <g class="nav-toggle-cross" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="5" y1="5" x2="19" y2="19" />
+            <line x1="19" y1="5" x2="5" y2="19" />
+          </g>
+        </svg>
+        <span class="nav-toggle-text">{{ t.menu }}</span>
+      </button>
+    </div>
   </div>
 </header>
