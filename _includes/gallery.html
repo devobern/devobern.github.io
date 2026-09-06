@@ -1,38 +1,45 @@
-{% assign lang = page.lang | default: "de" %}
-{% assign all_label = "Alle" %}
-{% if lang == "en" %}
-  {% assign all_label = "All" %}
-{% endif %}
-
-<div class="gallery-filters" role="tablist" aria-label="{% if lang == 'en' %}Filter photos by category{% else %}Fotos nach Kategorie filtern{% endif %}">
-  <button class="gallery-filter gallery-filter--active" data-category="all" role="tab" aria-selected="true">
-    {{ all_label }}
+{%- include i18n.html -%}
+<div class="gallery-filters" role="tablist" aria-label="{{ t.gallery_filter_aria }}">
+  <button type="button" class="gallery-filter gallery-filter--active" data-category="all" role="tab" aria-selected="true">
+    {{ t.gallery_all }}
   </button>
-  {% for cat in site.data.gallery.categories %}
-    <button class="gallery-filter" data-category="{{ cat.id }}" role="tab" aria-selected="false">
-      {{ cat.label[lang] | default: cat.label.de }}
-    </button>
-  {% endfor %}
+  {%- for cat in site.data.gallery.categories %}
+  <button type="button" class="gallery-filter" data-category="{{ cat.id }}" role="tab" aria-selected="false">
+    {{ cat.label[page_lang] | default: cat.label[site.default_lang] }}
+  </button>
+  {%- endfor %}
 </div>
 
-<div id="gallery-grid" class="gallery-masonry">
-  {% for cat in site.data.gallery.categories %}
-    {% for img in cat.images %}
-      <button class="gallery-item"
-              data-category="{{ cat.id }}"
-              data-file="{{ img.file }}"
-              data-alt="{{ img.alt[lang] | default: img.alt.de }}"
-              data-category-label="{{ cat.label[lang] | default: cat.label.de }}"
-              aria-label="{{ img.alt[lang] | default: img.alt.de }}">
-        <img src="/assets/gallery/thumbs/{{ img.file }}"
-             alt="{{ img.alt[lang] | default: img.alt.de }}"
-             loading="lazy" />
-        <div class="gallery-item-overlay">
-          <span class="gallery-item-category">{{ cat.label[lang] | default: cat.label.de }}</span>
-        </div>
-      </button>
-    {% endfor %}
-  {% endfor %}
+{%- comment -%}
+  Die Beschriftungen der Lightbox werden als data-Attribute übergeben, damit
+  gallery.js ohne Inline-Skript (CSP: script-src 'self') sprachfähig bleibt.
+{%- endcomment -%}
+<div id="gallery-grid"
+     class="gallery-masonry"
+     data-label-dialog="{{ t.lightbox_aria | escape }}"
+     data-label-close="{{ t.lightbox_close | escape }}"
+     data-label-prev="{{ t.lightbox_prev | escape }}"
+     data-label-next="{{ t.lightbox_next | escape }}"
+     data-label-loading="{{ t.lightbox_loading | escape }}">
+  {%- for cat in site.data.gallery.categories -%}
+    {%- assign cat_label = cat.label[page_lang] | default: cat.label[site.default_lang] -%}
+    {%- for img in cat.images -%}
+      {%- assign img_alt = img.alt[page_lang] | default: img.alt[site.default_lang] %}
+  <button type="button" class="gallery-item"
+          data-category="{{ cat.id }}"
+          data-file="{{ img.file | escape }}"
+          data-alt="{{ img_alt | escape }}"
+          data-category-label="{{ cat_label | escape }}"
+          aria-label="{{ img_alt | escape }}">
+    <img src="{{ '/assets/gallery/thumbs/' | append: img.file | relative_url }}"
+         alt="{{ img_alt | escape }}"
+         loading="lazy" decoding="async" />
+    <span class="gallery-item-overlay">
+      <span class="gallery-item-category">{{ cat_label }}</span>
+    </span>
+  </button>
+    {%- endfor -%}
+  {%- endfor %}
 </div>
 
-<script src="/assets/js/gallery.js"></script>
+<script src="{{ '/assets/js/gallery.js' | relative_url }}" defer></script>

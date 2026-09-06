@@ -4,6 +4,7 @@ title: "Ein unauffällig auffälliger E-Paper-Raumluft-Monitor (Teil 1: Warum?)"
 excerpt: "Warum ich für meine WG einen E-Paper-Raumluft-Monitor gebaut habe und wie das erste MVP funktioniert: Monitor Einheit mit E-Paper Display, Sensor und LED Panel -> Speicher und Weiterleitung an FastAPI Backend mit SQLite -> Darstellung auf interaktiven Dashboard."
 lang: de
 ref: epaper-monitor-teil1
+giscus_term: epaper-monitor-teil1
 ---
 
 <div class="tldr">
