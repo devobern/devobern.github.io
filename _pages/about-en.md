@@ -19,7 +19,7 @@ In my free time I enjoy bouldering or going for a run. I also run a small home n
 
 You will find more links in the footer (GitHub, LinkedIn). If you want to send me confidential information, please use GPG/PGP or Threema.
 
-Security reports: see [security.txt](/.well-known/security.txt) and the [security policy](/SECURITY/).
+Security reports: see [security.txt](/.well-known/security.txt).
 
 ## CV & projects
 
