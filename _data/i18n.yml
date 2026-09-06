@@ -15,7 +15,8 @@ de:
   lang_switch_aria: "Sprache wechseln"
   lang_switch_label: "Sprache"
   social_aria: "Soziale Links"
-  theme_toggle: "Theme umschalten"
+  theme_toggle: "Zwischen hellem und dunklem Design wechseln"
+  menu: "Menü"
   banner: "🚧 Diese Seite ist noch im Aufbau. Inhalte werden laufend ergänzt."
 
   blog_empty: "Keine Beiträge vorhanden."
@@ -65,7 +66,8 @@ en:
   lang_switch_aria: "Switch language"
   lang_switch_label: "Language"
   social_aria: "Social links"
-  theme_toggle: "Toggle theme"
+  theme_toggle: "Switch between light and dark theme"
+  menu: "Menu"
   banner: "🚧 This site is still under construction. Content is being added continuously."
 
   blog_empty: "No posts yet."
