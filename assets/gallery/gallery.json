@@ -1,5 +1,85 @@
 [
   {
+    "filename": "1-_DSF7560",
+    "thumb": "/assets/gallery/thumbs/1-_DSF7560.webp",
+    "full": "/assets/gallery/full/1-_DSF7560.webp",
+    "date_sort": "2026-09-04T16:53:46",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 23mm F2 R WR",
+      "date": "2026-09-04T16:53:46",
+      "date_display": "04.09.2026",
+      "aperture": "f/2.0",
+      "shutter": "1/500s",
+      "iso": "ISO 100",
+      "focal_length": "23mm (≙ 35mm)"
+    }
+  },
+  {
+    "filename": "2-_DSF7558",
+    "thumb": "/assets/gallery/thumbs/2-_DSF7558.webp",
+    "full": "/assets/gallery/full/2-_DSF7558.webp",
+    "date_sort": "2026-09-04T16:50:18",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 23mm F2 R WR",
+      "date": "2026-09-04T16:50:18",
+      "date_display": "04.09.2026",
+      "aperture": "f/2.0",
+      "shutter": "1/500s",
+      "iso": "ISO 100",
+      "focal_length": "23mm (≙ 35mm)"
+    }
+  },
+  {
+    "filename": "3-_DSF7557",
+    "thumb": "/assets/gallery/thumbs/3-_DSF7557.webp",
+    "full": "/assets/gallery/full/3-_DSF7557.webp",
+    "date_sort": "2026-09-04T16:48:39",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 23mm F2 R WR",
+      "date": "2026-09-04T16:48:39",
+      "date_display": "04.09.2026",
+      "aperture": "f/2.0",
+      "shutter": "1/1600s",
+      "iso": "ISO 100",
+      "focal_length": "23mm (≙ 35mm)"
+    }
+  },
+  {
+    "filename": "1-_DSF7506",
+    "thumb": "/assets/gallery/thumbs/1-_DSF7506.webp",
+    "full": "/assets/gallery/full/1-_DSF7506.webp",
+    "date_sort": "2026-08-31T14:02:19",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 23mm F2 R WR",
+      "date": "2026-08-31T14:02:19",
+      "date_display": "31.08.2026",
+      "aperture": "f/4.0",
+      "shutter": "1/23000s",
+      "iso": "ISO 320",
+      "focal_length": "23mm (≙ 35mm)"
+    }
+  },
+  {
+    "filename": "2-_DSF7487",
+    "thumb": "/assets/gallery/thumbs/2-_DSF7487.webp",
+    "full": "/assets/gallery/full/2-_DSF7487.webp",
+    "date_sort": "2026-08-31T12:10:15",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 23mm F2 R WR",
+      "date": "2026-08-31T12:10:15",
+      "date_display": "31.08.2026",
+      "aperture": "f/5.0",
+      "shutter": "1/1000s",
+      "iso": "ISO 160",
+      "focal_length": "23mm (≙ 35mm)"
+    }
+  },
+  {
     "filename": "DSF6479",
     "thumb": "/assets/gallery/thumbs/DSF6479.webp",
     "full": "/assets/gallery/full/DSF6479.webp",
@@ -12,7 +92,7 @@
       "aperture": "f/2.0",
       "shutter": "1/30s",
       "iso": "ISO 80",
-      "focal_length": "23mm"
+      "focal_length": "23mm (≙ 35mm)"
     }
   },
   {
@@ -28,7 +108,7 @@
       "aperture": "f/2.8",
       "shutter": "1/55s",
       "iso": "ISO 80",
-      "focal_length": "23mm"
+      "focal_length": "23mm (≙ 35mm)"
     }
   },
   {
@@ -44,7 +124,7 @@
       "aperture": "f/2.0",
       "shutter": "1/2200s",
       "iso": "ISO 80",
-      "focal_length": "23mm"
+      "focal_length": "23mm (≙ 35mm)"
     }
   },
   {
@@ -60,7 +140,7 @@
       "aperture": "f/2.0",
       "shutter": "1/1100s",
       "iso": "ISO 80",
-      "focal_length": "23mm"
+      "focal_length": "23mm (≙ 35mm)"
     }
   },
   {
@@ -76,7 +156,7 @@
       "aperture": "f/2.0",
       "shutter": "1/640s",
       "iso": "ISO 80",
-      "focal_length": "23mm"
+      "focal_length": "23mm (≙ 35mm)"
     }
   },
   {
@@ -92,7 +172,7 @@
       "aperture": "f/3.2",
       "shutter": "1/500s",
       "iso": "ISO 400",
-      "focal_length": "18mm"
+      "focal_length": "18mm (≙ 27mm)"
     }
   },
   {
@@ -108,7 +188,7 @@
       "aperture": "f/4.0",
       "shutter": "1/250s",
       "iso": "ISO 125",
-      "focal_length": "55mm"
+      "focal_length": "55mm (≙ 83mm)"
     }
   },
   {
@@ -124,7 +204,7 @@
       "aperture": "f/6.4",
       "shutter": "1/1000s",
       "iso": "ISO 200",
-      "focal_length": "32mm"
+      "focal_length": "32.9mm (≙ 49mm)"
     }
   },
   {
@@ -140,7 +220,7 @@
       "aperture": "f/2.8",
       "shutter": "1/4000s",
       "iso": "ISO 80",
-      "focal_length": "18mm"
+      "focal_length": "18mm (≙ 27mm)"
     }
   },
   {
@@ -156,7 +236,7 @@
       "aperture": "f/4.0",
       "shutter": "1/200s",
       "iso": "ISO 200",
-      "focal_length": "55mm"
+      "focal_length": "55mm (≙ 83mm)"
     }
   },
   {
@@ -172,7 +252,7 @@
       "aperture": "f/5.6",
       "shutter": "1/1250s",
       "iso": "ISO 160",
-      "focal_length": "55mm"
+      "focal_length": "55mm (≙ 83mm)"
     }
   },
   {
@@ -188,7 +268,7 @@
       "aperture": "f/4.0",
       "shutter": "1/170s",
       "iso": "ISO 160",
-      "focal_length": "48mm"
+      "focal_length": "48.4mm (≙ 73mm)"
     }
   },
   {
@@ -204,7 +284,7 @@
       "aperture": "f/5.6",
       "shutter": "1/1250s",
       "iso": "ISO 320",
-      "focal_length": "18mm"
+      "focal_length": "18mm (≙ 27mm)"
     }
   },
   {
@@ -220,7 +300,7 @@
       "aperture": "f/4.0",
       "shutter": "1/160s",
       "iso": "ISO 320",
-      "focal_length": "18mm"
+      "focal_length": "18mm (≙ 27mm)"
     }
   },
   {
@@ -236,7 +316,7 @@
       "aperture": "f/5.6",
       "shutter": "1/320s",
       "iso": "ISO 160",
-      "focal_length": "55mm"
+      "focal_length": "55mm (≙ 83mm)"
     }
   },
   {
@@ -252,7 +332,7 @@
       "aperture": "f/5.6",
       "shutter": "1/1800s",
       "iso": "ISO 320",
-      "focal_length": "18mm"
+      "focal_length": "18mm (≙ 27mm)"
     }
   },
   {
@@ -268,7 +348,7 @@
       "aperture": "f/5.6",
       "shutter": "1/800s",
       "iso": "ISO 320",
-      "focal_length": "19mm"
+      "focal_length": "19.6mm (≙ 29mm)"
     }
   },
   {
@@ -284,7 +364,7 @@
       "aperture": "f/5.6",
       "shutter": "1/680s",
       "iso": "ISO 320",
-      "focal_length": "18mm"
+      "focal_length": "18mm (≙ 27mm)"
     }
   }
 ]
