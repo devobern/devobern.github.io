@@ -17,7 +17,6 @@ languages: ["de", "en"]
 author:
   name: "Nicolin Dora"
   email: "mail@nicolin-dora.ch"
-  avatar: "/assets/images/avatar_c.jpg"
   bio: "Kurzprofil folgt."
   location: "Bern/Biel, Schweiz"
   links:

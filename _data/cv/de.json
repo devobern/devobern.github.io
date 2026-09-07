@@ -16,18 +16,7 @@
         "name": "",
         "value": "linkedin.com/in/nicolindora"
       }
-    ],
-    "picture": {
-      "url": "/assets/images/avatar_sw.jpg",
-      "size": 64,
-      "aspectRatio": 1,
-      "borderRadius": 0,
-      "effects": {
-        "hidden": false,
-        "border": false,
-        "grayscale": false
-      }
-    }
+    ]
   },
   "sections": {
     "summary": {

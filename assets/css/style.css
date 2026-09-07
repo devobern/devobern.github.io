@@ -349,7 +349,6 @@ pre{background: color-mix(in srgb, var(--border) 60%, transparent); padding: .75
 .cv-name{ font-size: 2rem; margin: 0 }
 .cv-headline{ margin:.25rem 0; color: var(--muted) }
 .cv-contact{ margin:.25rem 0 }
-.cv-avatar{ width:120px; height:auto; border-radius: 50%; border:1px solid var(--border) }
 
 /* Section blocks */
 .cv-block{ background: color-mix(in srgb, var(--border) 20%, transparent); border:1px solid var(--border); border-radius:.75rem; padding:1rem; margin-top:1rem }
@@ -378,7 +377,6 @@ pre{background: color-mix(in srgb, var(--border) 60%, transparent); padding: .75
 /* Responsive CV tweaks */
 @media (max-width: 800px){
   .cv-header{ grid-template-columns: 1fr; text-align:left }
-  .cv-avatar{ width:96px }
   .cv-columns{ grid-template-columns: 1fr }
   .cv-skill-groups{ grid-template-columns: 1fr }
 }
@@ -571,7 +569,6 @@ img{max-width:100%; height:auto}
 .cv-name{margin:0; font-size:1.5rem}
 .cv-headline{margin:.25rem 0; color:var(--muted)}
 .cv-contact{margin:.25rem 0}
-.cv-avatar{width:96px; height:96px; object-fit:cover; border-radius:.5rem}
 .cv-block{margin:1.25rem 0}
 .cv-block h2{margin:.25rem 0 .5rem 0; font-size:1.1rem}
 .cv-list{list-style:none; padding:0; margin:0}
