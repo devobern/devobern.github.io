@@ -35,7 +35,7 @@ jobs:
           echo "count=$count" >> "$GITHUB_OUTPUT"
           echo "Gefundene Uploads: $count"
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         if: steps.uploads.outputs.count != '0'
         with:
           python-version: '3.12'
