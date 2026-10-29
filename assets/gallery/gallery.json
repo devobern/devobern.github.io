@@ -1,5 +1,69 @@
 [
   {
+    "filename": "2-_DSF7950",
+    "thumb": "/assets/gallery/thumbs/2-_DSF7950.webp",
+    "full": "/assets/gallery/full/2-_DSF7950.webp",
+    "date_sort": "2026-10-25T12:51:08",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 18-55mm F2.8-4 R LM OIS",
+      "date": "2026-10-25T12:51:08",
+      "date_display": "25.10.2026",
+      "aperture": "f/4.0",
+      "shutter": "1/250s",
+      "iso": "ISO 80",
+      "focal_length": "39mm (≙ 59mm)"
+    }
+  },
+  {
+    "filename": "8-_DSF7823",
+    "thumb": "/assets/gallery/thumbs/8-_DSF7823.webp",
+    "full": "/assets/gallery/full/8-_DSF7823.webp",
+    "date_sort": "2026-10-24T16:24:26",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 18-55mm F2.8-4 R LM OIS",
+      "date": "2026-10-24T16:24:26",
+      "date_display": "24.10.2026",
+      "aperture": "f/3.6",
+      "shutter": "1/2000s",
+      "iso": "ISO 500",
+      "focal_length": "31.5mm (≙ 47mm)"
+    }
+  },
+  {
+    "filename": "9-_DSF7811",
+    "thumb": "/assets/gallery/thumbs/9-_DSF7811.webp",
+    "full": "/assets/gallery/full/9-_DSF7811.webp",
+    "date_sort": "2026-10-24T16:16:21",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 18-55mm F2.8-4 R LM OIS",
+      "date": "2026-10-24T16:16:21",
+      "date_display": "24.10.2026",
+      "aperture": "f/8.0",
+      "shutter": "1/500s",
+      "iso": "ISO 200",
+      "focal_length": "30.2mm (≙ 45mm)"
+    }
+  },
+  {
+    "filename": "10-_DSF7788",
+    "thumb": "/assets/gallery/thumbs/10-_DSF7788.webp",
+    "full": "/assets/gallery/full/10-_DSF7788.webp",
+    "date_sort": "2026-10-24T15:13:43",
+    "exif": {
+      "camera": "FUJIFILM X-T30 II",
+      "lens": "XF 18-55mm F2.8-4 R LM OIS",
+      "date": "2026-10-24T15:13:43",
+      "date_display": "24.10.2026",
+      "aperture": "f/5.6",
+      "shutter": "1/500s",
+      "iso": "ISO 125",
+      "focal_length": "21.4mm (≙ 32mm)"
+    }
+  },
+  {
     "filename": "1-_DSF7560",
     "thumb": "/assets/gallery/thumbs/1-_DSF7560.webp",
     "full": "/assets/gallery/full/1-_DSF7560.webp",
